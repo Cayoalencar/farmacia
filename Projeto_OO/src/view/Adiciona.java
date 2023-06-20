@@ -426,7 +426,7 @@ public class Adiciona {
 						JOptionPane.showMessageDialog(null, "PREENCHA CORRETAMENTE!");
 					} else {
 						
-						dados.getFarmacia().addProduto(f, new Medicamento(nomep.getText(),
+						dados.getFarmacia().addProduto(null, new Medicamento(nomep.getText(),
 								Double.parseDouble(valor.getText()), Integer.parseInt(qtd.getText()),
 								Double.parseDouble(peso.getText()), Integer.parseInt(codigo.getText()),
 								classificacao.getText(), finalidade.getText(), lab.getText()));
