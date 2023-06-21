@@ -15,6 +15,7 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JList;
 import javax.swing.JPanel;
+import javax.swing.JTextField;
 
 import controller.Controle_farmacia;
 import modelo.Filial; 
@@ -48,9 +49,9 @@ public class Telafiliais {
 
         Image image1 = back.getImage(); 
         
-        final JPanel panel = new JPanel();
+        JPanel panel = new JPanel();
         panel.setBackground(new Color(211, 211, 211));
-        panel.setBounds(800, 200, 300, 300); 
+        panel.setBounds(150, 300, 1000, 300); 
         panel.setLayout(null);
         
 
@@ -70,7 +71,13 @@ public class Telafiliais {
 
 	    botao1.setBounds(1350, 0, 90, 80); 
 	    
-		final JButton botaoProdutos = new JButton("PRODUTOS");
+	    JButton dell = new JButton("DELL");
+	    dell.setFont(new Font("Arial Black", Font.PLAIN, 22));
+	    dell.setForeground(Color.red);
+	    dell.setBounds(150,560 , 200, 30);
+	    dell.setVisible(false);
+	    
+		final JButton botaoProdutos = new JButton("FILIAIS");
 
 		botaoProdutos.setFont(new Font("Arial Black", Font.PLAIN, 22));
 
@@ -81,6 +88,33 @@ public class Telafiliais {
 		botaoProdutos.addActionListener(new ActionListener () {
 			public void actionPerformed(ActionEvent e) {
 				panel.add(list);
+			}
+			
+		});
+		
+		 JTextField nomeToDell = new JTextField(10);
+		 nomeToDell.setVisible(false);
+			nomeToDell.setBounds(150, 520, 200, 30);
+			nomeToDell.setActionCommand("myTF");
+		
+			JLabel z = new JLabel("NOME: ");
+
+			z.setFont(new Font("Arial Black", Font.PLAIN, 22));
+
+			z.setBounds(150, 520, 200, 30);
+			
+		JButton botaoDell = new JButton("DELETE");
+		botaoDell.setBounds(1050, 150, 200, 50);
+		botaoDell.setFont(new Font("Arial Black", Font.PLAIN, 22));
+
+		botaoDell.setForeground(Color.RED);
+		botaoDell.addActionListener(new ActionListener(){
+			
+			public void actionPerformed (ActionEvent e) {
+				nomeToDell.setVisible(true);
+				dell.setVisible(true);
+				dados.getFarmacia().delete(dell.getText());
+				
 			}
 			
 		});
@@ -120,7 +154,9 @@ public class Telafiliais {
 	    });	    
 	    
 	    telafiliais.add(panel);
+	    telafiliais.add(nomeToDell);
 	    telafiliais.add(botao1); 
+	    telafiliais.add(botaoDell);
 	    telafiliais.add(botaoProdutos); 
 	    telafiliais.add(botaoMed);
 	    telafiliais.add(botaoCosm);
@@ -131,13 +167,13 @@ public class Telafiliais {
 
 	} 
 	
-	public void updatedata() {
+	public void updatedata(Controle_farmacia filial) {
 		listModel.clear();
-		for (Filial f : dados.getFarmacia().getFiliais()) {
+		for (Filial f : filial.getFarmacia().getFiliais()) {
 			listModel.addElement(f.toString());
 
 		}
-
+		
 	}
 
 } 

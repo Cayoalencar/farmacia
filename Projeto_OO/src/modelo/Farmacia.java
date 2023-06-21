@@ -50,11 +50,10 @@ public class Farmacia {
 		}
 		}	
 		}
-	public void addProduto (String nome, Produto produto) {
+	public void addProduto (Produto produto) {
 		for(Filial f: filiais) {
-			if(f.getNome().equalsIgnoreCase(nome)) {
 				f.adicionar(produto);
-			}
+			
 		}
 	}
 	

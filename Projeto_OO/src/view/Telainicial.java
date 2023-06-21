@@ -39,6 +39,7 @@ public class Telainicial extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 			
 				Telamenu menu = new Telamenu();
+				telainicial.dispose();
 
 			}
 

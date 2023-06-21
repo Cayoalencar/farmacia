@@ -6,7 +6,7 @@ public class Filial {
 	private String nome;
 	private String endereco;
 	private String cnpj; 
-	public static  ArrayList <Produto> produtos = new ArrayList<>();
+	public  ArrayList <Produto> produtos = new ArrayList<>();
 	
 	public Filial(String nome, String endereco, String cnpj) {
 		super();

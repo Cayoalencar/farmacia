@@ -7,6 +7,7 @@ import view.*;
 public class Controle_farmacia { 
 	
  Farmacia farma = new Farmacia();
+ 
 
  public Farmacia getFarmacia() {
 	 return farma;
@@ -20,7 +21,9 @@ public class Controle_farmacia {
 		farma.delete(nome);
 	}
 
-	
+	public Controle_farmacia() {
+		farma.adicionar(new Filial("Farma forte gama", "gama, quadra 10, lote 23", "37.571.944/0001-29"));
+	}
 
 }
 

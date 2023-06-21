@@ -119,6 +119,7 @@ public class Telamenu {
 		// Exibe a janela
 
 		telamenu.setVisible(true);
+		
 
 	}
 
