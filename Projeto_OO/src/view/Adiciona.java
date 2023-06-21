@@ -56,51 +56,51 @@ public class Adiciona {
 
 		imageLabel.setBounds(0, 0, image.getWidth(null), image.getHeight(null));
 
-		JTextField classificacao = new JTextField(10);
+		final JTextField classificacao = new JTextField(10);
 
 		classificacao.setBounds(360, 520, 200, 30);
 
 		classificacao.setActionCommand("myTF");
 
-		 JTextField finalidade = new JTextField(10);
+		final JTextField finalidade = new JTextField(10);
 
 		finalidade.setBounds(360, 570, 200, 30);
 
 		finalidade.setActionCommand("myTF");
 
-		JTextField lab = new JTextField(10);
+		final JTextField lab = new JTextField(10);
 
 		lab.setBounds(360, 620, 200, 30);
 
 		lab.setActionCommand("myTF");
 
-		 JLabel j = new JLabel("CLASSIFICAÇAO: ");
+		final JLabel j = new JLabel("CLASSIFICAÇAO: ");
 
 		j.setFont(new Font("Arial Black", Font.PLAIN, 22));
 
 		j.setBounds(150, 520, 240, 30);
 
-		 JLabel j1 = new JLabel("");
+		final JLabel j1 = new JLabel("");
 
 		j1.setBounds(390, 200, 200, 30);
 
-		 JLabel u = new JLabel("FINALIDADE: ");
+		final JLabel u = new JLabel("FINALIDADE: ");
 
 		u.setFont(new Font("Arial Black", Font.PLAIN, 22));
 
 		u.setBounds(150, 570, 240, 30);
 
-		 JLabel u1 = new JLabel("");
+		final JLabel u1 = new JLabel("");
 
 		u1.setBounds(390, 300, 20, 30);
 
-		 JLabel t = new JLabel("LABORATORIO: ");
+		final JLabel t = new JLabel("LABORATORIO: ");
 
 		t.setFont(new Font("Arial Black", Font.PLAIN, 22));
 
 		t.setBounds(150, 620, 240, 30);
 
-		 JLabel t1 = new JLabel("");
+		final JLabel t1 = new JLabel("");
 
 		t1.setBounds(390, 100, 20, 30);
 
@@ -123,35 +123,35 @@ public class Adiciona {
 
 		u1.setVisible(false);
 
-		 JTextField marca = new JTextField(10);
+		final JTextField marca = new JTextField(10);
 
 		marca.setBounds(360, 520, 200, 30);
 
 		marca.setActionCommand("myTF");
 
-		 JTextField tipo = new JTextField(10);
+		final JTextField tipo = new JTextField(10);
 
 		tipo.setBounds(360, 570, 200, 30);
 
 		tipo.setActionCommand("myTF");
 
-		 JLabel r = new JLabel("MARCA: ");
+		final JLabel r = new JLabel("MARCA: ");
 
 		r.setFont(new Font("Arial Black", Font.PLAIN, 22));
 
 		r.setBounds(150, 520, 200, 30);
 
-		 JLabel re = new JLabel("");
+		final JLabel re = new JLabel("");
 
 		re.setBounds(350, 520, 10, 30);
 
-		 JLabel b = new JLabel("TIPO: ");
+		final JLabel b = new JLabel("TIPO: ");
 
 		b.setFont(new Font("Arial Black", Font.PLAIN, 22));
 
 		b.setBounds(150, 570, 200, 30);
 
-		 JLabel be = new JLabel("");
+		final JLabel be = new JLabel("");
 
 		be.setBounds(350, 570, 10, 30);
 
@@ -209,6 +209,8 @@ public class Adiciona {
 				re.setVisible(false);
 
 				be.setVisible(false);
+				
+				
 
 			}
 
@@ -259,6 +261,12 @@ public class Adiciona {
 			}
 
 		});
+		JButton botaoDell = new JButton("DELETE");
+		botaoDell.setBounds(580, 150, 200, 50);
+		botaoDell.setFont(new Font("Arial Black", Font.PLAIN, 22));
+
+		botaoDell.setForeground(Color.RED);
+		
 
 		// criando caixas de texto
 
@@ -275,7 +283,7 @@ public class Adiciona {
 
 		endereco.setActionCommand("myTF");
 
-		 final JTextField cnpj = new JTextField(10);
+		final JTextField cnpj = new JTextField(10);
 
 		cnpj.setBounds(1080, 450, 200, 30);
 
@@ -405,11 +413,9 @@ public class Adiciona {
 
 		botao.addActionListener(new ActionListener() {
 
-			// erro aqui, essa ação só pode ocorrer se o botao medicamentos estiver
-			// acionado!
-
+			//erro aqui, essa ação só pode ocorrer se o botao medicamentos estiver acionado!
+			
 			public void actionPerformed(ActionEvent e) {
-
 				if (classificacao.isVisible() && finalidade.isVisible() && lab.isVisible()) {
 					if (nomep.getText().isBlank() || valor.getText().isEmpty() || qtd.getText().isBlank()
 							|| qtd.getText().isEmpty() || peso.getText().isBlank() || peso.getText().isEmpty()
@@ -419,43 +425,20 @@ public class Adiciona {
 							|| lab.getText().isBlank() || lab.getText().isEmpty()) {
 						JOptionPane.showMessageDialog(null, "PREENCHA CORRETAMENTE!");
 					} else {
-						for (Filial f : dados.getFarmacia().getFiliais()) {
-
-							dados.getFarmacia()
-									.addProduto(new Medicamento(nomep.getText(), Double.parseDouble(valor.getText()),
-											Integer.parseInt(qtd.getText()), Double.parseDouble(peso.getText()),
-											Integer.parseInt(codigo.getText()), classificacao.getText(),
-											finalidade.getText(), lab.getText()));
-							JOptionPane.showMessageDialog(null, "PRODUTO CADASTRADO");
-						}
-
-					}
-				}
-
-				else if (marca.isVisible() && tipo.isVisible()) {
-
-					if (nomep.getText().isBlank() || valor.getText().isEmpty() || qtd.getText().isBlank()
-							|| qtd.getText().isEmpty() || peso.getText().isBlank() || peso.getText().isEmpty()
-							|| codigo.getText().isBlank() || codigo.getText().isEmpty() || marca.getText().isBlank()
-							|| marca.getText().isEmpty() || tipo.getText().isBlank() || tipo.getText().isEmpty()) {
-						JOptionPane.showMessageDialog(null, "PREENCHA CORRETAMENTE!");
-					}
-
-					else {
-
-						dados.getFarmacia()
-								.addProduto(new Cosmetico(nomep.getText(), Double.parseDouble(valor.getText()),
-										Integer.parseInt(qtd.getText()), Double.parseDouble(peso.getText()),
-										Integer.parseInt(codigo.getText()), marca.getText(), tipo.getText()));
+						
+						dados.getFarmacia().addProduto( new Medicamento(nomep.getText(),
+								Double.parseDouble(valor.getText()), Integer.parseInt(qtd.getText()),
+								Double.parseDouble(peso.getText()), Integer.parseInt(codigo.getText()),
+								classificacao.getText(), finalidade.getText(), lab.getText()));
 						JOptionPane.showMessageDialog(null, "PRODUTO CADASTRADO");
-					}
 
+					}
 				}
 
 			}
 
 		});
-		// Controle_farmacia controleFarmacia = new Controle_farmacia();
+		 final Controle_farmacia controleFarmacia = new Controle_farmacia();
 
 		JButton botao2 = new JButton("ADICIONA FILIAL");
 
@@ -473,9 +456,7 @@ public class Adiciona {
 						|| endereco.getText().isEmpty() || cnpj.getText().isBlank() || cnpj.getText().isEmpty()) {
 					JOptionPane.showMessageDialog(null, "PREENCHA CORRETAMENTE!");
 				} else {
-
-					dados.getFarmacia().adicionar((new Filial(nome.getText(), endereco.getText(), cnpj.getText())));
-
+					controleFarmacia.adicionar(new Filial(nome.getText(), endereco.getText(), cnpj.getText()));
 					JOptionPane.showMessageDialog(null, "FILIAL CADASTRADA");
 
 				}
@@ -493,6 +474,7 @@ public class Adiciona {
 		botao1.addActionListener(new ActionListener() {
 
 			public void actionPerformed(ActionEvent e) {
+
 
 				telaadd.dispose();
 
@@ -545,6 +527,7 @@ public class Adiciona {
 		telaadd.add(botaof);
 
 		telaadd.add(botaop);
+		telaadd.add(botaoDell);
 
 		telaadd.add(jlabContents);
 
