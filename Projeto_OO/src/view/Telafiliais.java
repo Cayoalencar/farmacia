@@ -1,6 +1,4 @@
-package view; 
-
-  
+package view;
 
 import java.awt.Color;
 import java.awt.Font;
@@ -18,65 +16,58 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 
 import controller.Controle_farmacia;
-import modelo.Filial; 
+import modelo.Filial;
 
-  
+public class Telafiliais {
 
-public class Telafiliais { 
-	
-	private JList<String> list;
-	private DefaultListModel<String> listModel = new DefaultListModel<>();
+	private JList<Filial> list;
+	private DefaultListModel<Filial> listModel = new DefaultListModel<>();
 	private JPanel panel = new JPanel();
 	private Controle_farmacia dados;
 
-	public Telafiliais(Controle_farmacia dados) { 
+	public Telafiliais(Controle_farmacia dados) {
 		list = new JList<>(listModel);
-		this.dados=dados;
-		
-		final JFrame telafiliais = new JFrame("FILIAIS"); 
+		this.dados = dados;
 
-		telafiliais.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); 
+		final JFrame telafiliais = new JFrame("FILIAIS");
 
-		telafiliais.setSize(1440, 900); 
+		telafiliais.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-		telafiliais.setVisible(true);	 
+		telafiliais.setSize(1440, 900);
 
-		ImageIcon logo = new ImageIcon("imagens/logof1.png"); 
+		telafiliais.setVisible(true);
 
-        Image image = logo.getImage(); 
+		ImageIcon logo = new ImageIcon("imagens/logof1.png");
 
-        ImageIcon back = new ImageIcon("imagens/back.png"); 
+		Image image = logo.getImage();
 
-        Image image1 = back.getImage(); 
-        
-        JPanel panel = new JPanel();
-        panel.setBackground(new Color(211, 211, 211));
-        panel.setBounds(150, 300, 1000, 300); 
-        panel.setLayout(null);
-        
+		ImageIcon back = new ImageIcon("imagens/back.png");
 
-  
+		Image image1 = back.getImage();
 
-        // Cria um JLabel para exibir a imagem 
+		JPanel panel = new JPanel();
+		panel.setBackground(new Color(211, 211, 211));
+		panel.setBounds(150, 300, 1000, 300);
+		panel.setLayout(null);
+		panel.setVisible(false);
+		list.setVisible(true);
+		list.setBackground(new Color(211, 211, 211));
+		list.setBounds(450, 250, 400, 500);
 
-        JLabel imageLabel = new JLabel(new ImageIcon(image)); 
+		// Cria um JLabel para exibir a imagem
 
-        imageLabel.setBounds(0, 0, image.getWidth(null), image.getHeight(null)); 
+		JLabel imageLabel = new JLabel(new ImageIcon(image));
 
-	     
+		imageLabel.setBounds(0, 0, image.getWidth(null), image.getHeight(null));
 
-	    JButton botao1 = new JButton("BACK"); 
+		JButton botao1 = new JButton("BACK");
 
-	    botao1.setIcon(new ImageIcon(image1)); 
+		botao1.setIcon(new ImageIcon(image1));
 
-	    botao1.setBounds(1350, 0, 90, 80); 
-	    
-	    JButton dell = new JButton("DELL");
-	    dell.setFont(new Font("Arial Black", Font.PLAIN, 22));
-	    dell.setForeground(Color.red);
-	    dell.setBounds(150,560 , 200, 30);
-	    dell.setVisible(false);
-	    
+		botao1.setBounds(1350, 0, 90, 80);
+
+	
+
 		final JButton botaoProdutos = new JButton("FILIAIS");
 
 		botaoProdutos.setFont(new Font("Arial Black", Font.PLAIN, 22));
@@ -84,39 +75,52 @@ public class Telafiliais {
 		botaoProdutos.setForeground(Color.RED);
 
 		botaoProdutos.setBounds(150, 150, 200, 50);
-		
-		botaoProdutos.addActionListener(new ActionListener () {
+
+		botaoProdutos.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				panel.add(list);
-			}
-			
+				dados.getFarmacia().listFilial();			}
+
 		});
-		
-		 JTextField nomeToDell = new JTextField(10);
-		 nomeToDell.setVisible(false);
-			nomeToDell.setBounds(150, 520, 200, 30);
-			nomeToDell.setActionCommand("myTF");
-		
-			JLabel z = new JLabel("NOME: ");
 
-			z.setFont(new Font("Arial Black", Font.PLAIN, 22));
+		JLabel z = new JLabel("NOME: ");
 
-			z.setBounds(150, 520, 200, 30);
-			
+		z.setFont(new Font("Arial Black", Font.PLAIN, 22));
+
+		z.setBounds(150, 520, 200, 30);
+
+		JTextField nomeToDell = new JTextField();
+		nomeToDell.setActionCommand("myTF");
+		nomeToDell.setBounds(150, 520, 200, 30);
+		nomeToDell.setVisible(false);
+
 		JButton botaoDell = new JButton("DELETE");
 		botaoDell.setBounds(1050, 150, 200, 50);
 		botaoDell.setFont(new Font("Arial Black", Font.PLAIN, 22));
 
 		botaoDell.setForeground(Color.RED);
-		botaoDell.addActionListener(new ActionListener(){
-			
-			public void actionPerformed (ActionEvent e) {
+
+		botaoDell.addActionListener(new ActionListener() {
+
+			public void actionPerformed(ActionEvent e) {
 				nomeToDell.setVisible(true);
-				dell.setVisible(true);
-				dados.getFarmacia().delete(dell.getText());
 				
+
 			}
-			
+
+		});
+		
+		JButton dell = new JButton("DELL");
+		dell.setFont(new Font("Arial Black", Font.PLAIN, 22));
+		dell.setForeground(Color.red);
+		dell.setBounds(150, 560, 200, 30);
+		dell.addActionListener(new ActionListener() {
+
+			public void actionPerformed(ActionEvent e) {
+				dados.getFarmacia().delete(nomeToDell.getText());
+				
+
+			}
+
 		});
 
 		JButton botaoMed = new JButton("MEDICAMENTOS");
@@ -126,7 +130,7 @@ public class Telafiliais {
 		botaoMed.setForeground(Color.RED);
 
 		botaoMed.setBounds(450, 150, 200, 50);
-		
+
 		JButton botaoCosm = new JButton("COSMETICOS");
 
 		botaoCosm.setFont(new Font("Arial Black", Font.PLAIN, 22));
@@ -135,45 +139,42 @@ public class Telafiliais {
 
 		botaoCosm.setBounds(750, 150, 200, 50);
 
-	    JLabel jlabPrompt = new JLabel(" ");  
+		JLabel jlabPrompt = new JLabel(" ");
 
-		jlabPrompt.setFont(new Font("Arial Black", Font.PLAIN, 22)); 
+		jlabPrompt.setFont(new Font("Arial Black", Font.PLAIN, 22));
 
-		jlabPrompt.setBounds(840, 290, 240, 30); 
-		
-		
+		jlabPrompt.setBounds(840, 290, 240, 30);
 
-		 
+		botao1.addActionListener(new ActionListener() {
 
-	    botao1.addActionListener(new ActionListener() { 
+			public void actionPerformed(ActionEvent e) {
+				telafiliais.dispose();
+			}
 
-	        public void actionPerformed(ActionEvent e) { 
-	        	telafiliais.dispose(); 
-	        } 
+		});
 
-	    });	    
-	    
-	    telafiliais.add(panel);
-	    telafiliais.add(nomeToDell);
-	    telafiliais.add(botao1); 
-	    telafiliais.add(botaoDell);
-	    telafiliais.add(botaoProdutos); 
-	    telafiliais.add(botaoMed);
-	    telafiliais.add(botaoCosm);
-	    telafiliais.add(imageLabel); 
-	    telafiliais.add(jlabPrompt); 
+		telafiliais.add(panel);
 
-	    
+		telafiliais.add(list);
+		telafiliais.add(nomeToDell);
+		telafiliais.add(dell);
+		telafiliais.add(botao1);
+		telafiliais.add(botaoDell);
+		telafiliais.add(botaoProdutos);
+		telafiliais.add(botaoMed);
+		telafiliais.add(botaoCosm);
+		telafiliais.add(imageLabel);
+		telafiliais.add(jlabPrompt);
 
-	} 
-	
+	}
+
 	public void updatedata(Controle_farmacia filial) {
 		listModel.clear();
 		for (Filial f : filial.getFarmacia().getFiliais()) {
-			listModel.addElement(f.toString());
+			listModel.addElement(f);
 
 		}
-		
+
 	}
 
-} 
+}
