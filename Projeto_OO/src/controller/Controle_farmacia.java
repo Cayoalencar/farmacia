@@ -1,18 +1,17 @@
-	package controller;
+package controller;
 
 import java.util.*;
 import modelo.*;
 import view.*;
 
-public class Controle_farmacia { 
-	
- Farmacia farma = new Farmacia();
- 
+public class Controle_farmacia {
 
- public Farmacia getFarmacia() {
-	 return farma;
- }
- 
+	Farmacia farma = new Farmacia();
+
+	public Farmacia getFarmacia() {
+		return farma;
+	}
+
 	public void adicionar(Filial filial) {
 		farma.adicionar(filial);
 	}
@@ -22,10 +21,8 @@ public class Controle_farmacia {
 	}
 
 	public Controle_farmacia() {
-		farma.adicionar(new Filial("Farma forte gama", "gama, quadra 10, lote 23", "37.571.944/0001-29"));
+		// farma.adicionar(new Filial("Farma forte gama", "gama, quadra 10, lote 23",
+		// "37.571.944/0001-29"));
 	}
 
 }
-
-
-

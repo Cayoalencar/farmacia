@@ -76,7 +76,7 @@ public class Telamenu {
 
 			public void actionPerformed(ActionEvent e) {
 
-				//Telafiliais.updatedata();
+				//Telafiliais.updatedata(dados);
 
 				Telafiliais telaFilial = new Telafiliais(dados);
 

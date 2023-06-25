@@ -39,8 +39,6 @@ public class Adiciona {
 		telaadd.setSize(1440, 900);
 
 		telaadd.setVisible(true);
-		
-		 
 
 		// Carregar a imagem
 
@@ -225,8 +223,6 @@ public class Adiciona {
 			}
 
 		});
-		
-		
 
 		JButton botaof = new JButton("COSMETICO");
 		botaof.setFont(new Font("Arial Black", Font.PLAIN, 22));
@@ -234,11 +230,10 @@ public class Adiciona {
 		botaof.setForeground(Color.RED);
 
 		botaof.setBounds(360, 150, 200, 50);
-		
 
 		botaof.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
+
 				marca.setVisible(true);
 
 				tipo.setVisible(true);
@@ -280,6 +275,12 @@ public class Adiciona {
 		botaoDell.setForeground(Color.RED);
 
 		// criando caixas de texto
+
+		final JTextField cidade = new JTextField(10);
+
+		cidade.setBounds(1080, 210, 200, 30);
+
+		cidade.setActionCommand("myTF");
 
 		final JTextField nome = new JTextField(10);
 
@@ -331,6 +332,12 @@ public class Adiciona {
 		codigo.setActionCommand("myTF");
 
 		// Cria rótulos.
+
+		JLabel jlabCidade = new JLabel("CIDADE: ");
+
+		jlabCidade.setFont(new Font("Arial Black", Font.PLAIN, 22));
+
+		jlabCidade.setBounds(840, 210, 240, 30);
 
 		JLabel jlabPrompt = new JLabel("NOME DA FILIAL: ");
 
@@ -424,12 +431,9 @@ public class Adiciona {
 
 		botao.addActionListener(new ActionListener() {
 
-			// erro aqui, essa ação só pode ocorrer se o botao medicamentos estiver
-			// acionado!
 
 			public void actionPerformed(ActionEvent e) {
-				boolean butHasClik=false;
-				
+				boolean butHasClik = false;
 
 				if (classificacao.isVisible() && finalidade.isVisible() && lab.isVisible()) {
 					butHasClik = true;
@@ -441,7 +445,7 @@ public class Adiciona {
 							|| lab.getText().isBlank() || lab.getText().isEmpty() || filialToCad.getText().isBlank()
 							|| filialToCad.getText().isEmpty()) {
 						JOptionPane.showMessageDialog(null, "PREENCHA CORRETAMENTE!");
-						 
+
 					} else {
 						for (Filial f : dados.getFarmacia().getFiliais()) {
 							if (filialToCad.getText() == f.getNome()) {
@@ -473,13 +477,13 @@ public class Adiciona {
 										new Cosmetico(nomep.getText(), Double.parseDouble(valor.getText()),
 												Integer.parseInt(qtd.getText()), Double.parseDouble(peso.getText()),
 												Integer.parseInt(codigo.getText()), marca.getText(), tipo.getText()));
-									JOptionPane.showMessageDialog(null, "PRODUTO CADASTRADO");
-								}
-								
+								JOptionPane.showMessageDialog(null, "PRODUTO CADASTRADO");
 							}
+
 						}
 					}
-				
+				}
+
 				if (butHasClik == false) {
 					JOptionPane.showMessageDialog(null, "SELECIONE MEDICAMENTO OU COSMETICO");
 
@@ -501,16 +505,17 @@ public class Adiciona {
 
 			public void actionPerformed(ActionEvent e) {
 
-				if (nome.getText().isBlank() || nome.getText().isEmpty() || endereco.getText().isBlank()
+				if (cidade.getText().isBlank() || cidade.getText().isBlank() || cidade.getText().isEmpty()
+						|| nome.getText().isBlank() || nome.getText().isEmpty() || endereco.getText().isBlank()
 						|| endereco.getText().isEmpty() || cnpj.getText().isBlank() || cnpj.getText().isEmpty()) {
 					JOptionPane.showMessageDialog(null, "PREENCHA CORRETAMENTE!");
 				} else {
 
-					dados.getFarmacia().adicionar((new Filial(nome.getText(), endereco.getText(), cnpj.getText())));
-					if(dados.getFarmacia().getFiliais()  != null ) {
+					dados.getFarmacia().adicionar(
+							(new Filial(cidade.getText(), nome.getText(), endereco.getText(), cnpj.getText())));
+					if (dados.getFarmacia().getFiliais() != null) {
 						JOptionPane.showMessageDialog(null, "FILIAL CADASTRADA");
 					}
-					
 
 				}
 
@@ -555,6 +560,10 @@ public class Adiciona {
 		telaadd.add(jlabPrompt6);
 
 		telaadd.add(jlabPrompt7);
+
+		telaadd.add(cidade);
+
+		telaadd.add(jlabCidade);
 
 		telaadd.add(nome);
 

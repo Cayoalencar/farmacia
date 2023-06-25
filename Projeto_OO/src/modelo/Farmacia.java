@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 public class Farmacia {
 
-	public static ArrayList<Filial> filiais = new ArrayList<>();
+	public ArrayList<Filial> filiais = new ArrayList<>();
 
 	public ArrayList<Filial> getFiliais() {
 		return filiais;
@@ -34,11 +34,16 @@ public class Farmacia {
 		}
 
 	}
-	 public void listFilial() {
-		 for(Filial f: filiais) {
-			 System.out.println(f);
-		 }
-	 }
+
+	public void listFilial(String cidade) {
+		for (Filial f : filiais) {
+			if(cidade.equalsIgnoreCase(cidade)) {
+				
+				System.out.println(cidade);
+				System.out.println(f);
+			}
+		}
+	}
 
 	public void searchFilial(String nome) {
 		// String resultadoBusca="";

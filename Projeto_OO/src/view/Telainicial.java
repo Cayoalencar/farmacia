@@ -1,14 +1,21 @@
 package view;
 
-import javax.swing.*;
-
 import java.awt.event.ActionEvent;
-
 import java.awt.event.ActionListener;
 
-public class Telainicial extends JFrame {
+import javax.swing.ImageIcon;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.Timer;
 
-	public Telainicial() {
+import controller.Controle_farmacia;
+
+public class Telainicial extends JFrame {
+	
+	private Controle_farmacia dados;
+
+	public Telainicial(Controle_farmacia dados) {
+		this.dados=dados;
 
 		// Cria a tela inicial
 
