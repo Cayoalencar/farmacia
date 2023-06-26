@@ -3,6 +3,7 @@ package view;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Image;
+import java.awt.TextField;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -25,6 +26,7 @@ public class Telafiliais {
 	private DefaultListModel<String> listModel = new DefaultListModel<>();
 	private JPanel panel = new JPanel();
 	private Controle_farmacia dados;
+	private JTextField cidadeList;
 
 	public Telafiliais(Controle_farmacia dados) {
 		list = new JList<>(listModel);
@@ -54,7 +56,7 @@ public class Telafiliais {
 		panel.setLayout(null);
 		panel.setVisible(false);
 		list.setVisible(true);
-		list.setBackground(new Color(211, 211, 211));
+		list.setBackground(null);
 		list.setBounds(450, 250, 400, 500);
 		list.setFont(new Font("Arial Black", Font.PLAIN, 10));
 
@@ -78,8 +80,7 @@ public class Telafiliais {
 
 		botaoFiliais.setBounds(150, 150, 200, 50);
 
-		JTextField cidadeList = new JTextField();
-		cidadeList.setActionCommand("myTF");
+		cidadeList = new JTextField();
 		cidadeList.setBounds(150, 320, 200, 30);
 		cidadeList.setVisible(false);
 
@@ -111,7 +112,9 @@ public class Telafiliais {
 					JOptionPane.showMessageDialog(null, "PREENCHA CORRETAMENTE!");
 				} else {
 					dados.getFarmacia().listFilial(cidadeList.getText());
-					updatedata(dados);
+					if(dados.listagemFilial(cidadeList.getText())) {
+						updatedata(dados, cidadeList.getText());
+					}
 				}
 				
 				
@@ -139,7 +142,7 @@ public class Telafiliais {
 		dell.setVisible(false);
 
 		JButton botaoDell = new JButton("DELETE");
-		botaoDell.setBounds(1050, 150, 200, 50);
+		botaoDell.setBounds(1090, 150, 200, 50);
 		botaoDell.setFont(new Font("Arial Black", Font.PLAIN, 22));
 
 		botaoDell.setForeground(Color.RED);
@@ -163,6 +166,7 @@ public class Telafiliais {
 					JOptionPane.showMessageDialog(null, "PREENCHA CORRETAMENTE!");
 				} else {
 					dados.getFarmacia().delete(nomeToDell.getText());
+					updatedata(dados);
 				}
 
 			}
@@ -175,7 +179,7 @@ public class Telafiliais {
 
 		botaoMed.setForeground(Color.RED);
 
-		botaoMed.setBounds(450, 150, 200, 50);
+		botaoMed.setBounds(450, 150, 220, 50);
 
 		JButton botaoCosm = new JButton("COSMETICOS");
 
@@ -183,7 +187,7 @@ public class Telafiliais {
 
 		botaoCosm.setForeground(Color.RED);
 
-		botaoCosm.setBounds(750, 150, 200, 50);
+		botaoCosm.setBounds(780, 150, 200, 50);
 
 		JLabel jlabPrompt = new JLabel(" ");
 
@@ -216,10 +220,20 @@ public class Telafiliais {
 		telafiliais.add(jlabPrompt);
 
 	}
-
+	public void updatedata(Controle_farmacia atual, String filial) {
+		listModel.clear();
+		for (Filial f : atual.getFarmacia().getFiliais()) {
+			if(filial.equals(f.getCidade())) {
+				listModel.addElement(f.toString());	
+			}
+		}
+		list.setVisible(false);
+		list.setVisible(true);
+	}
 	public void updatedata(Controle_farmacia atual) {
 		listModel.clear();
 		for (Filial f : atual.getFarmacia().getFiliais()) {
+			
 			listModel.addElement(f.toString());
 
 		}

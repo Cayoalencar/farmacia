@@ -19,7 +19,14 @@ public class Controle_farmacia {
 	public void delete(String nome) {
 		farma.delete(nome);
 	}
-
+	public boolean listagemFilial(String cidadeList) {
+		for(Filial f : farma.getFiliais()) {
+			if (cidadeList.equalsIgnoreCase(f.getCidade())) {
+				return true;
+			}
+		}
+		return false;
+	}
 	public Controle_farmacia() {
 		// farma.adicionar(new Filial("Farma forte gama", "gama, quadra 10, lote 23",
 		// "37.571.944/0001-29"));
