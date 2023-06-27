@@ -3,7 +3,6 @@ package view;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Image;
-import java.awt.TextField;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -48,24 +47,32 @@ public class Telafiliais {
 
 		Image image = logo.getImage();
 
+		ImageIcon logopesquisa = new ImageIcon("imagens/logopesquisa.png");
+
+		Image image2 = logopesquisa.getImage();
+		
 		ImageIcon back = new ImageIcon("imagens/back.png");
 
 		Image image1 = back.getImage();
 
 		JPanel panel = new JPanel();
 		panel.setBackground(new Color(211, 211, 211));
-		panel.setBounds(150, 300, 1000, 300);
+		panel.setBounds(150, 300, 800, 300);
 		panel.setLayout(null);
 		panel.setVisible(false);
 		list.setVisible(false);
 		list.setBackground(null);
-		list.setBounds(450, 250, 400, 500);
-		list.setFont(new Font("Arial Black", Font.PLAIN, 10));
+		list.setBounds(450, 250, 900, 500);
+		list.setFont(new Font("Arial Black", Font.PLAIN, 25));
 
 		products.setVisible(false);
-		products.setBackground(new Color(211, 211, 211));
-		products.setBounds(450, 250, 400, 500);
-		products.setFont(new Font("Arial Black", Font.PLAIN, 10));
+		products.setBackground(null);
+		products.setBounds(450, 250, 900, 500);
+		products.setFont(new Font("Arial Black", Font.PLAIN, 25));
+		
+		JLabel nulo = new JLabel(" ");
+		nulo.setBounds(0, 0, 1100, 900);
+		nulo.setBackground(null);
 
 		// Cria um JLabel para exibir a imagem
 
@@ -85,7 +92,7 @@ public class Telafiliais {
 
 		botaoFiliais.setForeground(Color.RED);
 
-		botaoFiliais.setBounds(150, 150, 200, 50);
+		botaoFiliais.setBounds(130, 150, 200, 50);
 
 		cidadeList = new JTextField();
 		cidadeList.setBounds(150, 320, 200, 30);
@@ -109,6 +116,7 @@ public class Telafiliais {
 				cidadeList.setVisible(true);
 				cidadeFind.setVisible(true);
 				botaoList.setVisible(true);
+				list.setVisible(true);
 			}
 
 		});
@@ -131,23 +139,23 @@ public class Telafiliais {
 
 		nomeFDell.setFont(new Font("Arial Black", Font.PLAIN, 22));
 
-		nomeFDell.setBounds(60, 520, 200, 30);
+		nomeFDell.setBounds(60, 500, 200, 30);
 
 		nomeFDell.setVisible(false);
 
 		JTextField nomeToDell = new JTextField();
 		nomeToDell.setActionCommand("myTF");
-		nomeToDell.setBounds(150, 520, 200, 30);
+		nomeToDell.setBounds(150, 500, 200, 30);
 		nomeToDell.setVisible(false);
 
 		JButton dell = new JButton("DELL");
 		dell.setFont(new Font("Arial Black", Font.PLAIN, 22));
 		dell.setForeground(Color.red);
-		dell.setBounds(150, 560, 200, 30);
+		dell.setBounds(150, 540, 200, 30);
 		dell.setVisible(false);
 
 		JButton botaoDell = new JButton("DELETE");
-		botaoDell.setBounds(770, 150, 200, 50);
+		botaoDell.setBounds(750, 150, 200, 50);
 		botaoDell.setFont(new Font("Arial Black", Font.PLAIN, 22));
 
 		botaoDell.setForeground(Color.RED);
@@ -177,6 +185,19 @@ public class Telafiliais {
 			}
 
 		});
+		
+		JTextField pesquisa = new JTextField();
+		pesquisa.setBounds(1020, 157, 270, 35);
+		pesquisa.setLayout(null);
+		pesquisa.setVisible(true);
+
+		JLabel nomeProd = new JLabel("NOME: ");
+
+		nomeProd.setFont(new Font("Arial Black", Font.PLAIN, 22));
+
+		nomeProd.setBounds(60, 660, 200, 30);
+
+		nomeProd.setVisible(false);
 
 		JButton botaoProd = new JButton("PRODUTOS");
 
@@ -184,39 +205,54 @@ public class Telafiliais {
 
 		botaoProd.setForeground(Color.RED);
 
-		botaoProd.setBounds(450, 150, 220, 50);
-		
+		botaoProd.setBounds(430, 150, 220, 50);
+
+		JTextField pToList = new JTextField();
+		pToList.setBounds(150, 660, 200, 30);
+		pToList.setVisible(false);
+
 		JButton botaoLPd = new JButton("LISTAR");
 
 		botaoLPd.setFont(new Font("Arial Black", Font.PLAIN, 22));
 
 		botaoLPd.setForeground(Color.RED);
 
-		botaoLPd.setBounds(850, 350, 220, 50);
-		
-		botaoLPd.setVisible(true);
+		botaoLPd.setBounds(150, 700, 200, 30);
 
-		JTextField pToList = new JTextField();
-		pToList.setBounds(850, 420, 200, 30);
-		pToList.setVisible(true);
+		botaoLPd.setVisible(false);
+		
+		JButton botaopesquisa = new JButton("");
+		botaopesquisa.setIcon(new ImageIcon(image2));
+		botaopesquisa.setBounds(1320, 150, 50, 50);
+		botaopesquisa.setLayout(null);
+		botaopesquisa.setVisible(true);
 
 		botaoProd.addActionListener(new ActionListener() {
 
 			public void actionPerformed(ActionEvent e) {
-				// list.setVisible(false);
-				 products.setVisible(true);
-				
+				list.setVisible(false);
+				products.setVisible(true);
+				botaoLPd.setVisible(true);
+				pToList.setVisible(true);
+				nomeProd.setVisible(true);
+
 			}
 
 		});
-		
+
 		botaoLPd.addActionListener(new ActionListener() {
-			public void actionPerformed (ActionEvent e) {
-				 updatedatap(dados);
-					dados.getFarmacia().listar(pToList.getText());
-					dados.getFarmacia().listarCosmetico();
+			public void actionPerformed(ActionEvent e) {
+				updatedatap(dados);
+				dados.getFarmacia().listar(pToList.getText());
+				dados.getFarmacia().listarCosmetico();
 			}
-	});
+		});
+		
+		botaopesquisa.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+			}
+		});
 
 		JLabel jlabPrompt = new JLabel(" ");
 
@@ -241,6 +277,7 @@ public class Telafiliais {
 		telafiliais.add(botaoLPd);
 		telafiliais.add(botaoList);
 		telafiliais.add(nomeFDell);
+		telafiliais.add(nomeProd);
 		telafiliais.add(nomeToDell);
 		telafiliais.add(dell);
 		telafiliais.add(botao1);
@@ -249,6 +286,9 @@ public class Telafiliais {
 		telafiliais.add(botaoProd);
 		telafiliais.add(imageLabel);
 		telafiliais.add(jlabPrompt);
+		telafiliais.add(botaopesquisa);
+		telafiliais.add(pesquisa);
+		telafiliais.add(nulo);
 
 	}
 

@@ -447,13 +447,19 @@ public class Adiciona {
 
 					} else {
 						for (Filial f : dados.getFarmacia().getFiliais()) {
-							if (filialToCad.getText() == f.getNome()) {
-								dados.getFarmacia().addProduto(filialToCad.getText(),
-										new Medicamento(nomep.getText(), Double.parseDouble(valor.getText()),
-												Integer.parseInt(qtd.getText()), Double.parseDouble(peso.getText()),
-												Integer.parseInt(codigo.getText()), classificacao.getText(),
-												finalidade.getText(), lab.getText()));
-								JOptionPane.showMessageDialog(null, "PRODUTO CADASTRADO");
+
+							dados.getFarmacia().addProduto(filialToCad.getText(),
+									new Medicamento(nomep.getText(), Double.parseDouble(valor.getText()),
+											Integer.parseInt(qtd.getText()), Double.parseDouble(peso.getText()),
+											Integer.parseInt(codigo.getText()), classificacao.getText(),
+											finalidade.getText(), lab.getText()));
+							JOptionPane.showMessageDialog(null, "PRODUTO CADASTRADO");
+						}
+						for (Filial f : dados.getFarmacia().getFiliais()) {
+							for (Produto p : f.getProdutos()) {
+								if (p != null) {
+									JOptionPane.showMessageDialog(null, "PRODUTO CADASTRADO!");
+								}
 							}
 						}
 					}
@@ -470,16 +476,21 @@ public class Adiciona {
 					}
 
 					else {
+
+						dados.getFarmacia().addProduto(filialToCad.getText(),
+								new Cosmetico(nomep.getText(), Double.parseDouble(valor.getText()),
+										Integer.parseInt(qtd.getText()), Double.parseDouble(peso.getText()),
+										Integer.parseInt(codigo.getText()), marca.getText(), tipo.getText()));
 						for (Filial f : dados.getFarmacia().getFiliais()) {
-							if (filialToCad.getText() == f.getNome()) {
-								dados.getFarmacia().addProduto(filialToCad.getText(),
-										new Cosmetico(nomep.getText(), Double.parseDouble(valor.getText()),
-												Integer.parseInt(qtd.getText()), Double.parseDouble(peso.getText()),
-												Integer.parseInt(codigo.getText()), marca.getText(), tipo.getText()));
-								
+							for (Produto p : f.getProdutos()) {
+								if (p != null) {
+									JOptionPane.showMessageDialog(null, "PRODUTO CADASTRADO!");
+
+								}
 							}
+
 						}
-						JOptionPane.showMessageDialog(null, "PRODUTO CADASTRADO");
+
 					}
 
 				}

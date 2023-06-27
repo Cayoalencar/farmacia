@@ -66,6 +66,10 @@ public class Farmacia {
 
 	public void addProduto(String nomeFilial, Produto produto) {
 		for (Filial f : filiais) {
+			if (nomeFilial.equals(f.getNome())) {
+
+				f.produtos.add(produto);
+			}
 			f.produtos.add(produto);
 		}
 	}

@@ -28,8 +28,11 @@ public class Cosmetico extends Produto {
 	public void setTipo(String tipo) {
 		this.tipo = tipo;
 	}
+	
+	public String toString() {
+		return "Nome: " + nome  + "\n Valor: " + valor + "\n Quatidade: " + quantidade + "\n Peso: " + peso +
+				"\n Codigo: " + codigo  + "\n Marca: " + marca + "\n Tipo: " + tipo;
 
-	
-	
+	}
 	
 }
