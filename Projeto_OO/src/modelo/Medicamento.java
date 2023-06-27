@@ -5,6 +5,7 @@ public class Medicamento extends Produto {
 	private String classificacao; 
 	private String finalidade;
 	private String laboratorio;
+	
 
 	public Medicamento(String nome, double valor, int quantidade, double peso, int codigo, String classificacao, String finalidade, String laboratorio) {
 		super(nome, valor, quantidade, peso, codigo);

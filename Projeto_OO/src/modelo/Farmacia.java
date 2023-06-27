@@ -26,7 +26,7 @@ public class Farmacia {
 	public void listar(String nome) {
 		for (Filial f : filiais) {
 			if (f.getNome().equalsIgnoreCase(nome)) {
-				System.out.println(f.toString());
+				// System.out.println(f.toString());
 				for (Produto p : f.getProdutos()) {
 					System.out.println(p.toString());
 				}
@@ -37,8 +37,8 @@ public class Farmacia {
 
 	public void listFilial(String cidade) {
 		for (Filial f : filiais) {
-			if(cidade.equalsIgnoreCase(cidade)) {
-				
+			if (cidade.equalsIgnoreCase(cidade)) {
+
 				System.out.println(cidade);
 				System.out.println(f);
 			}
@@ -66,8 +66,17 @@ public class Farmacia {
 
 	public void addProduto(String nomeFilial, Produto produto) {
 		for (Filial f : filiais) {
-			f.adicionar(produto);
+			f.produtos.add(produto);
+		}
+	}
 
+	public void listarCosmetico() {
+		for (Filial f : filiais) {
+			for (Produto p : f.produtos) {
+				if (p instanceof Cosmetico) {
+					System.out.println(p.toString());
+				}
+			}
 		}
 	}
 

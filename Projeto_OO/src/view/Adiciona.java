@@ -431,7 +431,6 @@ public class Adiciona {
 
 		botao.addActionListener(new ActionListener() {
 
-
 			public void actionPerformed(ActionEvent e) {
 				boolean butHasClik = false;
 
@@ -477,11 +476,12 @@ public class Adiciona {
 										new Cosmetico(nomep.getText(), Double.parseDouble(valor.getText()),
 												Integer.parseInt(qtd.getText()), Double.parseDouble(peso.getText()),
 												Integer.parseInt(codigo.getText()), marca.getText(), tipo.getText()));
-								JOptionPane.showMessageDialog(null, "PRODUTO CADASTRADO");
+								
 							}
-
 						}
+						JOptionPane.showMessageDialog(null, "PRODUTO CADASTRADO");
 					}
+
 				}
 
 				if (butHasClik == false) {

@@ -19,20 +19,22 @@ import javax.swing.JTextField;
 
 import controller.Controle_farmacia;
 import modelo.Filial;
+import modelo.Produto;
 
 public class Telafiliais {
 
 	private JList<String> list;
 	private DefaultListModel<String> listModel = new DefaultListModel<>();
+	private JList<String> products;
+	private DefaultListModel<String> productsModel = new DefaultListModel<>();
 	private JPanel panel = new JPanel();
 	private Controle_farmacia dados;
 	private JTextField cidadeList;
 
 	public Telafiliais(Controle_farmacia dados) {
 		list = new JList<>(listModel);
+		products = new JList<>(productsModel);
 		this.dados = dados;
-
-		listModel.addElement("OLÁ");
 
 		final JFrame telafiliais = new JFrame("FILIAIS");
 
@@ -55,10 +57,15 @@ public class Telafiliais {
 		panel.setBounds(150, 300, 1000, 300);
 		panel.setLayout(null);
 		panel.setVisible(false);
-		list.setVisible(true);
+		list.setVisible(false);
 		list.setBackground(null);
 		list.setBounds(450, 250, 400, 500);
 		list.setFont(new Font("Arial Black", Font.PLAIN, 10));
+
+		products.setVisible(false);
+		products.setBackground(new Color(211, 211, 211));
+		products.setBounds(450, 250, 400, 500);
+		products.setFont(new Font("Arial Black", Font.PLAIN, 10));
 
 		// Cria um JLabel para exibir a imagem
 
@@ -112,12 +119,10 @@ public class Telafiliais {
 					JOptionPane.showMessageDialog(null, "PREENCHA CORRETAMENTE!");
 				} else {
 					dados.getFarmacia().listFilial(cidadeList.getText());
-					if(dados.listagemFilial(cidadeList.getText())) {
+					if (dados.listagemFilial(cidadeList.getText())) {
 						updatedata(dados, cidadeList.getText());
 					}
 				}
-				
-				
 
 			}
 		});
@@ -142,7 +147,7 @@ public class Telafiliais {
 		dell.setVisible(false);
 
 		JButton botaoDell = new JButton("DELETE");
-		botaoDell.setBounds(1090, 150, 200, 50);
+		botaoDell.setBounds(770, 150, 200, 50);
 		botaoDell.setFont(new Font("Arial Black", Font.PLAIN, 22));
 
 		botaoDell.setForeground(Color.RED);
@@ -173,21 +178,45 @@ public class Telafiliais {
 
 		});
 
-		JButton botaoMed = new JButton("MEDICAMENTOS");
+		JButton botaoProd = new JButton("PRODUTOS");
 
-		botaoMed.setFont(new Font("Arial Black", Font.PLAIN, 22));
+		botaoProd.setFont(new Font("Arial Black", Font.PLAIN, 22));
 
-		botaoMed.setForeground(Color.RED);
+		botaoProd.setForeground(Color.RED);
 
-		botaoMed.setBounds(450, 150, 220, 50);
+		botaoProd.setBounds(450, 150, 220, 50);
+		
+		JButton botaoLPd = new JButton("LISTAR");
 
-		JButton botaoCosm = new JButton("COSMETICOS");
+		botaoLPd.setFont(new Font("Arial Black", Font.PLAIN, 22));
 
-		botaoCosm.setFont(new Font("Arial Black", Font.PLAIN, 22));
+		botaoLPd.setForeground(Color.RED);
 
-		botaoCosm.setForeground(Color.RED);
+		botaoLPd.setBounds(850, 350, 220, 50);
+		
+		botaoLPd.setVisible(true);
 
-		botaoCosm.setBounds(780, 150, 200, 50);
+		JTextField pToList = new JTextField();
+		pToList.setBounds(850, 420, 200, 30);
+		pToList.setVisible(true);
+
+		botaoProd.addActionListener(new ActionListener() {
+
+			public void actionPerformed(ActionEvent e) {
+				// list.setVisible(false);
+				 products.setVisible(true);
+				
+			}
+
+		});
+		
+		botaoLPd.addActionListener(new ActionListener() {
+			public void actionPerformed (ActionEvent e) {
+				 updatedatap(dados);
+					dados.getFarmacia().listar(pToList.getText());
+					dados.getFarmacia().listarCosmetico();
+			}
+	});
 
 		JLabel jlabPrompt = new JLabel(" ");
 
@@ -205,8 +234,11 @@ public class Telafiliais {
 
 		telafiliais.add(panel);
 		telafiliais.add(list);
+		telafiliais.add(pToList);
+		telafiliais.add(products);
 		telafiliais.add(cidadeFind);
 		telafiliais.add(cidadeList);
+		telafiliais.add(botaoLPd);
 		telafiliais.add(botaoList);
 		telafiliais.add(nomeFDell);
 		telafiliais.add(nomeToDell);
@@ -214,31 +246,41 @@ public class Telafiliais {
 		telafiliais.add(botao1);
 		telafiliais.add(botaoDell);
 		telafiliais.add(botaoFiliais);
-		telafiliais.add(botaoMed);
-		telafiliais.add(botaoCosm);
+		telafiliais.add(botaoProd);
 		telafiliais.add(imageLabel);
 		telafiliais.add(jlabPrompt);
 
 	}
+
 	public void updatedata(Controle_farmacia atual, String filial) {
 		listModel.clear();
 		for (Filial f : atual.getFarmacia().getFiliais()) {
-			if(filial.equals(f.getCidade())) {
-				listModel.addElement(f.toString());	
+			if (filial.equals(f.getCidade())) {
+				listModel.addElement(f.toString());
 			}
 		}
-		list.setVisible(false);
-		list.setVisible(true);
+
 	}
+
 	public void updatedata(Controle_farmacia atual) {
 		listModel.clear();
 		for (Filial f : atual.getFarmacia().getFiliais()) {
-			
 			listModel.addElement(f.toString());
 
 		}
-		list.setVisible(false);
-		list.setVisible(true);
+
+	}
+
+	public void updatedatap(Controle_farmacia atualPd) {
+		productsModel.clear();
+		for (Filial f : atualPd.getFarmacia().getFiliais()) {
+			for (Produto p : f.getProdutos()) {
+				productsModel.addElement(p.toString() + f.getNome());
+
+			}
+
+		}
+
 	}
 
 }

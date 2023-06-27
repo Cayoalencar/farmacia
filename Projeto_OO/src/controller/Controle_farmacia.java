@@ -27,9 +27,5 @@ public class Controle_farmacia {
 		}
 		return false;
 	}
-	public Controle_farmacia() {
-		// farma.adicionar(new Filial("Farma forte gama", "gama, quadra 10, lote 23",
-		// "37.571.944/0001-29"));
-	}
 
 }
