@@ -70,7 +70,6 @@ public class Farmacia {
 
 				f.produtos.add(produto);
 			}
-			f.produtos.add(produto);
 		}
 	}
 

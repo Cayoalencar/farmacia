@@ -4,7 +4,7 @@ import java.util.*;
 import modelo.*;
 import view.*;
 
-public class Controle_farmacia {
+public class ControleFarmacia {
 
 	Farmacia farma = new Farmacia();
 

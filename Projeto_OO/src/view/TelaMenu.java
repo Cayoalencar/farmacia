@@ -13,14 +13,14 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
-import controller.Controle_farmacia;
+import controller.ControleFarmacia;
 
-public class Telamenu {
-	private Controle_farmacia dados = new Controle_farmacia();
-	private Telafiliais tela;
-	private Adiciona telaadd;
+public class TelaMenu {
+	private ControleFarmacia dados = new ControleFarmacia();
+	private TelaList tela;
+	private TelaCadastro telaadd;
 
-	public Telamenu() {
+	public TelaMenu() {
 
 		// Cria a janela da próxima tela
 
@@ -62,7 +62,7 @@ public class Telamenu {
 
 		// Cria o primeiro botão
 
-		JButton botao1 = new JButton("FILIAIS");
+		JButton botao1 = new JButton("LIST");
 
 		botao1.setBackground(Color.WHITE);
 
@@ -78,7 +78,7 @@ public class Telamenu {
 
 				//Telafiliais.updatedata(dados);
 
-				Telafiliais telaFilial = new Telafiliais(dados);
+				TelaList telaFilial = new TelaList(dados);
 
 			}
 
@@ -86,7 +86,7 @@ public class Telamenu {
 
 // Cria o segundo botão 
 
-		JButton botao3 = new JButton("ADICIONA");
+		JButton botao3 = new JButton("CADASTRO");
 
 		botao3.setBackground(Color.WHITE);
 
@@ -100,7 +100,7 @@ public class Telamenu {
 
 			public void actionPerformed(ActionEvent e) {
 
-				telaadd= new Adiciona(dados);
+				telaadd= new TelaCadastro(dados);
 
 			}
 

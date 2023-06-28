@@ -8,13 +8,13 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.Timer;
 
-import controller.Controle_farmacia;
+import controller.ControleFarmacia;
 
-public class Telainicial extends JFrame {
+public class TelaInicial extends JFrame {
 	
-	private Controle_farmacia dados;
+	private ControleFarmacia dados;
 
-	public Telainicial(Controle_farmacia dados) {
+	public TelaInicial(ControleFarmacia dados) {
 		this.dados=dados;
 
 		// Cria a tela inicial
@@ -45,7 +45,7 @@ public class Telainicial extends JFrame {
 
 			public void actionPerformed(ActionEvent e) {
 			
-				Telamenu menu = new Telamenu();
+				TelaMenu menu = new TelaMenu();
 				telainicial.dispose();
 
 			}

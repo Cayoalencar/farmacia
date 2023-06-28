@@ -26,11 +26,11 @@ import controller.*;
 
 import modelo.*;
 
-public class Adiciona {
+public class TelaCadastro {
 	private JFrame telaadd;
-	private Controle_farmacia dados;
+	private ControleFarmacia dados;
 
-	public Adiciona(Controle_farmacia dados) {
+	public TelaCadastro(ControleFarmacia dados) {
 		this.dados = dados;
 		telaadd = new JFrame("CADASTRO");
 
@@ -107,12 +107,13 @@ public class Adiciona {
 		classificacao.setVisible(false);
 
 		lab.setVisible(false);
-		;
+
 		final JTextField filialToCad = new JTextField(10);
 
 		filialToCad.setBounds(359, 670, 200, 30);
 
 		filialToCad.setActionCommand("myTF");
+		
 		JLabel filial = new JLabel("FILIAL: ");
 
 		filial.setFont(new Font("Arial Black", Font.PLAIN, 22));
@@ -192,7 +193,6 @@ public class Adiciona {
 				classificacao.setVisible(true);
 
 				lab.setVisible(true);
-				;
 
 				finalidade.setVisible(true);
 
@@ -249,7 +249,6 @@ public class Adiciona {
 				classificacao.setVisible(false);
 
 				lab.setVisible(false);
-				;
 
 				finalidade.setVisible(false);
 
@@ -446,22 +445,14 @@ public class Adiciona {
 						JOptionPane.showMessageDialog(null, "PREENCHA CORRETAMENTE!");
 
 					} else {
-						for (Filial f : dados.getFarmacia().getFiliais()) {
 
-							dados.getFarmacia().addProduto(filialToCad.getText(),
-									new Medicamento(nomep.getText(), Double.parseDouble(valor.getText()),
-											Integer.parseInt(qtd.getText()), Double.parseDouble(peso.getText()),
-											Integer.parseInt(codigo.getText()), classificacao.getText(),
-											finalidade.getText(), lab.getText()));
-							JOptionPane.showMessageDialog(null, "PRODUTO CADASTRADO");
-						}
-						for (Filial f : dados.getFarmacia().getFiliais()) {
-							for (Produto p : f.getProdutos()) {
-								if (p != null) {
-									JOptionPane.showMessageDialog(null, "PRODUTO CADASTRADO!");
-								}
-							}
-						}
+						dados.getFarmacia().addProduto(filialToCad.getText(),
+								new Medicamento(nomep.getText(), Double.parseDouble(valor.getText()),
+										Integer.parseInt(qtd.getText()), Double.parseDouble(peso.getText()),
+										Integer.parseInt(codigo.getText()), classificacao.getText(),
+										finalidade.getText(), lab.getText()));
+						JOptionPane.showMessageDialog(null, "PRODUTO CADASTRADO");
+
 					}
 				}
 
@@ -481,15 +472,7 @@ public class Adiciona {
 								new Cosmetico(nomep.getText(), Double.parseDouble(valor.getText()),
 										Integer.parseInt(qtd.getText()), Double.parseDouble(peso.getText()),
 										Integer.parseInt(codigo.getText()), marca.getText(), tipo.getText()));
-						for (Filial f : dados.getFarmacia().getFiliais()) {
-							for (Produto p : f.getProdutos()) {
-								if (p != null) {
-									JOptionPane.showMessageDialog(null, "PRODUTO CADASTRADO!");
-
-								}
-							}
-
-						}
+						JOptionPane.showMessageDialog(null, "PRODUTO CADASTRADO!");
 
 					}
 

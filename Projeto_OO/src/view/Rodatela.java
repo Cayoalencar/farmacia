@@ -1,12 +1,12 @@
 package view;
 
-import controller.Controle_farmacia;
+import controller.ControleFarmacia;
 
 public class Rodatela {
  
 	public static void main(String[] args) {
 	
-		Telainicial tela = new Telainicial(new Controle_farmacia());
+		TelaInicial tela = new TelaInicial(new ControleFarmacia());
 
 	}
 
