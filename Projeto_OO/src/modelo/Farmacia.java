@@ -22,6 +22,18 @@ public class Farmacia {
 			}
 		}
 	}
+	
+	public void deletepd(String nome) {
+		for (Filial f : filiais) {
+			for(Produto p: f.getProdutos()) {
+			if (p.getNome().equalsIgnoreCase(nome)) {
+				f.produtos.remove(p);
+				break;
+			}
+				
+			}
+		}
+	}
 
 	public void listar(String nome) {
 		for (Filial f : filiais) {
