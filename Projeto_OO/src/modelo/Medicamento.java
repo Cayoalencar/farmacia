@@ -42,7 +42,7 @@ public class Medicamento extends Produto {
 
 	@Override
 	public String toString() {
-		return "Medicamento classificacao: " + classificacao + ", finalidade: " + finalidade + ", laboratorio: "
+		return "Nome: " + nome + "classificacao: " + classificacao + ", finalidade: " + finalidade + ", laboratorio: "
 				+ laboratorio;
 	}
 

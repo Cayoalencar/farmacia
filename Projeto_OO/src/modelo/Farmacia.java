@@ -27,7 +27,7 @@ public class Farmacia {
 		for (Filial f : filiais) {
 			for(Produto p: f.getProdutos()) {
 			if (p.getNome().equalsIgnoreCase(nome)) {
-				f.produtos.remove(p);
+				f.getProdutos().remove(p);
 				break;
 			}
 				
@@ -57,23 +57,24 @@ public class Farmacia {
 		}
 	}
 
-	public void searchFilial(String nome) {
-		// String resultadoBusca="";
+	public Filial searchFilial(String nome) {
 		for (Filial f : filiais) {
 			if (f.getNome().equalsIgnoreCase(nome)) {
-				System.out.println(f.toString());
+				return f;
 			}
 		}
+		return null;
 	}
 
-	public void searchProduto(String nome) {
+	public Produto searchProduto(String nome) {
 		for (Filial f : filiais) {
 			for (Produto p : f.produtos) {
 				if (p.getNome().equalsIgnoreCase(nome)) {
-					System.out.println(p.toString());
+					return p;
 				}
 			}
 		}
+		return null;
 	}
 
 	public void addProduto(String nomeFilial, Produto produto) {

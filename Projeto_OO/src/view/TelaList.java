@@ -1,6 +1,7 @@
 package view;
 
 import java.awt.Color;
+
 import java.awt.Font;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
@@ -28,6 +29,7 @@ public class TelaList {
 	private DefaultListModel<String> productsModel = new DefaultListModel<>();
 	private ControleFarmacia dados;
 	private JTextField cidadeList;
+
 
 	public TelaList(ControleFarmacia dados) {
 		list = new JList<>(listModel);
@@ -348,7 +350,7 @@ public class TelaList {
 		botaoList.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 
-				 list.setVisible(true);
+				list.setVisible(true);
 				products.setVisible(false);
 
 				if (cidadeList.getText().isBlank() || cidadeList.getText().isEmpty()) {
@@ -395,7 +397,7 @@ public class TelaList {
 		botaoDell.setFont(new Font("Arial Black", Font.PLAIN, 22));
 
 		botaoDell.setForeground(Color.RED);
-		
+
 		JButton dellPd = new JButton("APAGAR");
 		dellPd.setFont(new Font("Arial Black", Font.PLAIN, 22));
 		dellPd.setForeground(Color.red);
@@ -435,26 +437,35 @@ public class TelaList {
 				} else {
 					dados.getFarmacia().delete(nomeToDell.getText());
 				}
-				
 
 				updatedata(dados);
 			}
 
 		});
-		
-		dellPd.addActionListener(new ActionListener (){
-			
+
+		dellPd.addActionListener(new ActionListener() {
+
 			public void actionPerformed(ActionEvent e) {
-				dados.getFarmacia().deletepd(nomeFDellPd.getText());
-				
-				updatedata(dados);
+				if (nomeToDellPd.getText().isBlank() || nomeToDellPd.getText().isEmpty()) {
+					JOptionPane.showMessageDialog(null, "PREENCHA CORRETAMENTE!");
+				}
+
+				else {
+					for (Filial f : dados.getFarmacia().getFiliais()) {
+						for (Produto p : f.getProdutos()) {
+							if (p.getNome().equalsIgnoreCase(nomeToDellPd.getText())) {
+								f.getProdutos().remove(p);
+								break;
+							}
+
+						}
+					}
+				}
+
+				updatedatap(dados);
 			}
-			
-			
-			
+
 		});
-		
-		
 
 		JTextField pesquisaProd = new JTextField();
 		pesquisaProd.setBounds(1020, 157, 270, 35);
@@ -532,7 +543,27 @@ public class TelaList {
 
 		botaopesquisaFilial.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				if (pesquisaf.getText().isBlank() || pesquisaf.getText().isEmpty()) {
+					JOptionPane.showMessageDialog(null, "PESQUISA INVÁLIDA!");
+				}
 
+				else {
+					dados.getFarmacia().searchFilial(pesquisaf.getText());
+
+				}
+			}
+		});
+
+		botaopesquisaProduto.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				if (pesquisaProd.getText().isBlank() || pesquisaProd.getText().isEmpty()) {
+					JOptionPane.showMessageDialog(null, "PESQUISA INVÁLIDA!");
+				}
+
+				else {
+					dados.getFarmacia().searchProduto(pesquisaProd.getText());
+
+				}
 			}
 		});
 
