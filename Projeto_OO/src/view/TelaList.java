@@ -29,14 +29,14 @@ public class TelaList {
 	private DefaultListModel<String> productsModel = new DefaultListModel<>();
 	private ControleFarmacia dados;
 	private JTextField cidadeList;
-
+	private JTextField pesquisaf;
 
 	public TelaList(ControleFarmacia dados) {
 		list = new JList<>(listModel);
 		products = new JList<>(productsModel);
 		this.dados = dados;
 
-		final JFrame telafiliais = new JFrame("FILIAIS");
+		JFrame telafiliais = new JFrame("FILIAIS");
 
 		telafiliais.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
@@ -61,12 +61,12 @@ public class TelaList {
 		list.setVisible(false);
 		list.setBackground(null);
 		list.setBounds(400, 250, 900, 460);
-		list.setFont(new Font("Arial Black", Font.PLAIN, 10));
+		list.setFont(new Font("Arial Black", Font.PLAIN, 20));
 
 		products.setVisible(false);
 		products.setBackground(null);
 		products.setBounds(400, 250, 900, 460);
-		products.setFont(new Font("Arial Black", Font.PLAIN, 10));
+		products.setFont(new Font("Arial Black", Font.PLAIN, 18));
 
 		JLabel selecao = new JLabel("SELECIONE O QUE DESEJA EDITAR");
 
@@ -76,23 +76,23 @@ public class TelaList {
 
 		selecao.setVisible(false);
 
-		final JTextField nomep = new JTextField(10);
+		JTextField nomep = new JTextField(10);
 
 		nomep.setBounds(730, 270, 200, 30);
 
-		final JTextField valor = new JTextField(10);
+		JTextField valor = new JTextField(10);
 
 		valor.setBounds(730, 320, 200, 30);
 
-		final JTextField qtd = new JTextField(10);
+		JTextField qtd = new JTextField(10);
 
 		qtd.setBounds(730, 370, 200, 30);
 
-		final JTextField peso = new JTextField(10);
+		JTextField peso = new JTextField(10);
 
 		peso.setBounds(730, 420, 200, 30);
 
-		final JTextField codigo = new JTextField(10);
+		JTextField codigo = new JTextField(10);
 
 		codigo.setBounds(730, 470, 200, 30);
 
@@ -138,19 +138,19 @@ public class TelaList {
 
 		jlabPrompt6.setBounds(520, 470, 240, 30);
 
-		final JTextField classificacao = new JTextField(10);
+		JTextField classificacao = new JTextField(10);
 
 		classificacao.setBounds(730, 520, 200, 30);
 
-		final JTextField finalidade = new JTextField(10);
+		JTextField finalidade = new JTextField(10);
 
 		finalidade.setBounds(730, 570, 200, 30);
 
-		final JTextField lab = new JTextField(10);
+		JTextField lab = new JTextField(10);
 
 		lab.setBounds(730, 620, 200, 30);
 
-		final JLabel j = new JLabel("CLASSIFICAÇAO: ");
+		JLabel j = new JLabel("CLASSIFICAÇAO: ");
 
 		j.setFont(new Font("Arial Black", Font.PLAIN, 22));
 
@@ -172,11 +172,11 @@ public class TelaList {
 
 		marca.setBounds(730, 520, 200, 30);
 
-		final JTextField tipo = new JTextField(10);
+		JTextField tipo = new JTextField(10);
 
 		tipo.setBounds(730, 570, 200, 30);
 
-		final JLabel r = new JLabel("MARCA: ");
+		JLabel r = new JLabel("MARCA: ");
 
 		r.setFont(new Font("Arial Black", Font.PLAIN, 22));
 
@@ -188,19 +188,19 @@ public class TelaList {
 
 		b.setBounds(520, 570, 200, 30);
 
-		final JTextField cidade = new JTextField(10);
+		JTextField cidade = new JTextField(10);
 
 		cidade.setBounds(730, 270, 200, 30);
 
-		final JTextField nome = new JTextField(10);
+		JTextField nome = new JTextField(10);
 
 		nome.setBounds(730, 320, 200, 30);
 
-		final JTextField endereco = new JTextField(10);
+		JTextField endereco = new JTextField(10);
 
 		endereco.setBounds(730, 370, 200, 30);
 
-		final JTextField cnpj = new JTextField(10);
+		JTextField cnpj = new JTextField(10);
 
 		cnpj.setBounds(730, 420, 200, 30);
 
@@ -286,7 +286,7 @@ public class TelaList {
 
 		botao1.setBounds(1350, 0, 90, 80);
 
-		final JButton botaoFiliais = new JButton("FILIAIS");
+		JButton botaoFiliais = new JButton("FILIAIS");
 
 		botaoFiliais.setFont(new Font("Arial Black", Font.PLAIN, 22));
 
@@ -328,24 +328,10 @@ public class TelaList {
 		botaopesquisaFilial.setLayout(null);
 		botaopesquisaFilial.setVisible(false);
 
-		JTextField pesquisaf = new JTextField();
+		pesquisaf = new JTextField();
 		pesquisaf.setBounds(1020, 157, 270, 35);
 		pesquisaf.setLayout(null);
 		pesquisaf.setVisible(false);
-
-		botaoFiliais.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				cidadeList.setVisible(true);
-				cidadeFind.setVisible(true);
-				botaoList.setVisible(true);
-				list.setVisible(true);
-				products.setVisible(false);
-				botaopesquisaFilial.setVisible(true);
-				pesquisaf.setVisible(true);
-
-			}
-
-		});
 
 		botaoList.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -365,31 +351,31 @@ public class TelaList {
 			}
 		});
 
-		JLabel nomeFDell = new JLabel("NOME: ");
+		JLabel nomeFDell = new JLabel("FILIAL: ");
 
 		nomeFDell.setFont(new Font("Arial Black", Font.PLAIN, 22));
 
-		nomeFDell.setBounds(60, 660, 200, 30);
+		nomeFDell.setBounds(50, 500, 200, 30);
 		nomeFDell.setVisible(false);
 
 		JTextField nomeToDell = new JTextField();
-		nomeToDell.setBounds(150, 660, 200, 30);
+		nomeToDell.setBounds(150, 500, 200, 30);
 		nomeToDell.setVisible(false);
 
 		JTextField nomeToDellPd = new JTextField();
-		nomeToDellPd.setBounds(150, 660, 200, 30);
+		nomeToDellPd.setBounds(150, 500, 200, 30);
 		nomeToDellPd.setVisible(false);
 
 		JLabel nomeFDellPd = new JLabel("PRODUTO: ");
 
 		nomeFDellPd.setFont(new Font("Arial Black", Font.PLAIN, 22));
-		nomeFDellPd.setBounds(60, 660, 200, 30);
+		nomeFDellPd.setBounds(20, 500, 200, 30);
 		nomeFDellPd.setVisible(false);
 
-		JButton dell = new JButton("DELL");
+		JButton dell = new JButton("APAGAR");
 		dell.setFont(new Font("Arial Black", Font.PLAIN, 22));
 		dell.setForeground(Color.red);
-		dell.setBounds(150, 700, 200, 30);
+		dell.setBounds(150, 540, 200, 30);
 		dell.setVisible(false);
 
 		JButton botaoDell = new JButton("DELETE");
@@ -401,7 +387,7 @@ public class TelaList {
 		JButton dellPd = new JButton("APAGAR");
 		dellPd.setFont(new Font("Arial Black", Font.PLAIN, 22));
 		dellPd.setForeground(Color.red);
-		dellPd.setBounds(150, 700, 200, 30);
+		dellPd.setBounds(150, 540, 200, 30);
 		dellPd.setVisible(false);
 
 		botaoDell.addActionListener(new ActionListener() {
@@ -472,14 +458,6 @@ public class TelaList {
 		pesquisaProd.setLayout(null);
 		pesquisaProd.setVisible(false);
 
-		JLabel nomeProd = new JLabel("FILIAL: ");
-
-		nomeProd.setFont(new Font("Arial Black", Font.PLAIN, 22));
-
-		nomeProd.setBounds(60, 500, 200, 30);
-
-		nomeProd.setVisible(false);
-
 		JButton botaoProd = new JButton("PRODUTOS");
 
 		botaoProd.setFont(new Font("Arial Black", Font.PLAIN, 22));
@@ -487,20 +465,6 @@ public class TelaList {
 		botaoProd.setForeground(Color.RED);
 
 		botaoProd.setBounds(430, 150, 220, 50);
-
-		JTextField pToList = new JTextField();
-		pToList.setBounds(150, 500, 200, 30);
-		pToList.setVisible(false);
-
-		JButton botaoLPd = new JButton("LISTAR");
-
-		botaoLPd.setFont(new Font("Arial Black", Font.PLAIN, 22));
-
-		botaoLPd.setForeground(Color.RED);
-
-		botaoLPd.setBounds(150, 540, 200, 30);
-
-		botaoLPd.setVisible(false);
 
 		JButton botaopesquisaProduto = new JButton("");
 		botaopesquisaProduto.setIcon(new ImageIcon(image2));
@@ -514,31 +478,19 @@ public class TelaList {
 
 				list.setVisible(false);
 				products.setVisible(true);
-				botaoLPd.setVisible(true);
-				pToList.setVisible(true);
-				nomeProd.setVisible(true);
+				botaopesquisaFilial.setVisible(false);
+				pesquisaf.setVisible(false);
 				botaopesquisaProduto.setVisible(true);
 				pesquisaProd.setVisible(true);
+				cidadeFind.setVisible(false);
+				botaoList.setVisible(false);
+				cidadeList.setVisible(false);
 
 				updatedatap(dados);
 				dados.getFarmacia().listarCosmetico();
 
 			}
 
-		});
-
-		botaoLPd.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				list.setVisible(false);
-				products.setVisible(true);
-
-				updatedatap(dados);
-				dados.getFarmacia().listar(pToList.getText());
-
-				if (pToList.getText().isBlank() || pToList.getText().isEmpty()) {
-					JOptionPane.showMessageDialog(null, "PREENCHA CORRETAMENTE!");
-				}
-			}
 		});
 
 		botaopesquisaFilial.addActionListener(new ActionListener() {
@@ -548,7 +500,9 @@ public class TelaList {
 				}
 
 				else {
-					dados.getFarmacia().searchFilial(pesquisaf.getText());
+					list.setVisible(true);
+					products.setVisible(false);
+					updatedataPesquisaF(dados, pesquisaf.getText());
 
 				}
 			}
@@ -561,7 +515,9 @@ public class TelaList {
 				}
 
 				else {
-					dados.getFarmacia().searchProduto(pesquisaProd.getText());
+					products.setVisible(true);
+					list.setVisible(false);
+					updatedataPesquisaP(dados, pesquisaProd.getText());
 
 				}
 			}
@@ -623,6 +579,25 @@ public class TelaList {
 
 		});
 
+		botaoFiliais.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				cidadeList.setVisible(true);
+				cidadeFind.setVisible(true);
+				botaoList.setVisible(true);
+				list.setVisible(true);
+				products.setVisible(false);
+				botaopesquisaFilial.setVisible(true);
+				botaopesquisaProduto.setVisible(false);
+				pesquisaProd.setVisible(false);
+				pesquisaf.setVisible(true);
+
+				// updatedatap(dados);
+				// dados.getFarmacia().listFilial(null);
+
+			}
+
+		});
+
 		JButton botaop = new JButton("MEDICAMENTO");
 
 		botaop.setFont(new Font("Arial Black", Font.PLAIN, 22));
@@ -635,6 +610,14 @@ public class TelaList {
 
 		botaop.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+
+				products.setVisible(true);
+
+				list.setVisible(false);
+
+				products.setBounds(100, 400, 300, 250);
+
+				products.setBackground(Color.RED);
 
 				classificacao.setVisible(true);
 
@@ -710,6 +693,14 @@ public class TelaList {
 		botaoc.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 
+				products.setVisible(true);
+
+				list.setVisible(false);
+
+				products.setBounds(100, 400, 300, 250);
+
+				products.setBackground(Color.GREEN);
+
 				marca.setVisible(true);
 
 				tipo.setVisible(true);
@@ -780,6 +771,14 @@ public class TelaList {
 
 		botaof.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+
+				list.setVisible(true);
+
+				products.setVisible(false);
+
+				list.setBounds(100, 400, 300, 250);
+
+				list.setBackground(Color.BLUE);
 
 				marca.setVisible(false);
 
@@ -858,9 +857,6 @@ public class TelaList {
 				botaoupdate.setVisible(false);
 				list.setVisible(false);
 				products.setVisible(false);
-				botaoLPd.setVisible(false);
-				pToList.setVisible(false);
-				nomeProd.setVisible(false);
 				botaopesquisaFilial.setVisible(false);
 				pesquisaProd.setVisible(false);
 				botaopesquisaProduto.setVisible(false);
@@ -874,6 +870,7 @@ public class TelaList {
 				botaoList.setVisible(false);
 				cidadeList.setVisible(false);
 				jlabPrompt.setVisible(false);
+				pesquisaf.setVisible(false);
 				botaop.setVisible(true);
 				botaoc.setVisible(true);
 				botaof.setVisible(true);
@@ -883,23 +880,22 @@ public class TelaList {
 		});
 
 		telafiliais.add(list);
+
 		telafiliais.add(nomeFDellPd);
+
 		telafiliais.add(nomeToDellPd);
-		telafiliais.add(pToList);
+
 		telafiliais.add(dellPd);
+
 		telafiliais.add(products);
 
 		telafiliais.add(cidadeFind);
 
 		telafiliais.add(cidadeList);
 
-		telafiliais.add(botaoLPd);
-
 		telafiliais.add(botaoList);
 
 		telafiliais.add(nomeFDell);
-
-		telafiliais.add(nomeProd);
 
 		telafiliais.add(nomeToDell);
 
@@ -1022,6 +1018,29 @@ public class TelaList {
 		for (Filial f : atual.getFarmacia().getFiliais()) {
 			listModel.addElement(f.toString());
 
+		}
+
+	}
+
+	public void updatedataPesquisaF(ControleFarmacia atual, String nome) {
+		listModel.clear();
+		for (Filial f : atual.getFarmacia().getFiliais()) {
+			if (nome.equalsIgnoreCase(f.getNome())) {
+				listModel.addElement(f.toString());
+			}
+		}
+
+	}
+
+	public void updatedataPesquisaP(ControleFarmacia atual, String nome) {
+		productsModel.clear();
+		for (Filial f : atual.getFarmacia().getFiliais()) {
+			for (Produto p : f.getProdutos()) {
+				if (nome.equalsIgnoreCase(p.getNome())) {
+					productsModel.addElement(p.toString() + f.getNome());
+
+				}
+			}
 		}
 
 	}

@@ -56,25 +56,19 @@ public class TelaCadastro {
 
 		imageLabel.setBounds(0, 0, image.getWidth(null), image.getHeight(null));
 
-		final JTextField classificacao = new JTextField(10);
+		JTextField classificacao = new JTextField(10);
 
 		classificacao.setBounds(360, 520, 200, 30);
 
-		classificacao.setActionCommand("myTF");
-
-		final JTextField finalidade = new JTextField(10);
+		JTextField finalidade = new JTextField(10);
 
 		finalidade.setBounds(360, 570, 200, 30);
 
-		finalidade.setActionCommand("myTF");
-
-		final JTextField lab = new JTextField(10);
+		JTextField lab = new JTextField(10);
 
 		lab.setBounds(360, 620, 200, 30);
 
-		lab.setActionCommand("myTF");
-
-		final JLabel j = new JLabel("CLASSIFICAÇAO: ");
+		JLabel j = new JLabel("CLASSIFICAÇAO: ");
 
 		j.setFont(new Font("Arial Black", Font.PLAIN, 22));
 
@@ -108,12 +102,12 @@ public class TelaCadastro {
 
 		lab.setVisible(false);
 
-		final JTextField filialToCad = new JTextField(10);
+		JTextField filialToCad = new JTextField(10);
 
 		filialToCad.setBounds(359, 670, 200, 30);
 
 		filialToCad.setActionCommand("myTF");
-		
+
 		JLabel filial = new JLabel("FILIAL: ");
 
 		filial.setFont(new Font("Arial Black", Font.PLAIN, 22));
@@ -140,13 +134,13 @@ public class TelaCadastro {
 
 		marca.setActionCommand("myTF");
 
-		final JTextField tipo = new JTextField(10);
+		JTextField tipo = new JTextField(10);
 
 		tipo.setBounds(360, 570, 200, 30);
 
 		tipo.setActionCommand("myTF");
 
-		final JLabel r = new JLabel("MARCA: ");
+		JLabel r = new JLabel("MARCA: ");
 
 		r.setFont(new Font("Arial Black", Font.PLAIN, 22));
 
@@ -275,56 +269,56 @@ public class TelaCadastro {
 
 		// criando caixas de texto
 
-		final JTextField cidade = new JTextField(10);
+		JTextField cidade = new JTextField(10);
 
 		cidade.setBounds(1080, 210, 200, 30);
 
 		cidade.setActionCommand("myTF");
 
-		final JTextField nome = new JTextField(10);
+		JTextField nome = new JTextField(10);
 
 		nome.setBounds(1080, 290, 200, 30);
 
 		nome.setActionCommand("myTF");
 
-		final JTextField endereco = new JTextField(10);
+		JTextField endereco = new JTextField(10);
 		endereco.setText("Cidade: ;Bairro: ;Logradouro:");
 
 		endereco.setBounds(1080, 370, 200, 30);
 
 		endereco.setActionCommand("myTF");
 
-		final JTextField cnpj = new JTextField(10);
+		JTextField cnpj = new JTextField(10);
 
 		cnpj.setBounds(1080, 450, 200, 30);
 
 		cnpj.setActionCommand("myTF");
 
-		final JTextField nomep = new JTextField(10);
+		JTextField nomep = new JTextField(10);
 
 		nomep.setBounds(360, 270, 200, 30);
 
 		nomep.setActionCommand("myTF");
 
-		final JTextField valor = new JTextField(10);
+		JTextField valor = new JTextField(10);
 
 		valor.setBounds(360, 320, 200, 30);
 
 		valor.setActionCommand("myTF");
 
-		final JTextField qtd = new JTextField(10);
+		JTextField qtd = new JTextField(10);
 
 		qtd.setBounds(360, 370, 200, 30);
 
 		qtd.setActionCommand("myTF");
 
-		final JTextField peso = new JTextField(10);
+		JTextField peso = new JTextField(10);
 
 		peso.setBounds(360, 420, 200, 30);
 
 		peso.setActionCommand("myTF");
 
-		final JTextField codigo = new JTextField(10);
+		JTextField codigo = new JTextField(10);
 
 		codigo.setBounds(360, 470, 200, 30);
 
