@@ -359,7 +359,6 @@ public class TelaList {
 				if (cidadeList.getText().isBlank() || cidadeList.getText().isEmpty()) {
 					JOptionPane.showMessageDialog(null, "PREENCHA CORRETAMENTE!");
 				} else {
-					dados.getFarmacia().listFilial(cidadeList.getText());
 					if (dados.listagemFilial(cidadeList.getText())) {
 						updatedata(dados, cidadeList.getText());
 					}
@@ -504,7 +503,6 @@ public class TelaList {
 				cidadeList.setVisible(false);
 
 				updatedatap(dados);
-				dados.getFarmacia().listarCosmetico();
 
 			}
 

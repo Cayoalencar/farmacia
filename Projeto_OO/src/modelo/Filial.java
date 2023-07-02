@@ -2,14 +2,31 @@ package modelo;
 
 import java.util.ArrayList;
 
+/**
+ * @author Cayo Felipe Alencar Camara
+ * @author Gabryel Nicolas Soares
+ * 
+ *         A classe filial representa uma filial da farmacia e armazena uma lista de produtos
+ */
 public class Filial {
+
 	private String nome;
 	private String endereco;
 	private String cidade;
 	private String cnpj;
 	public ArrayList<Produto> produtos = new ArrayList<>();
 
+	/**
+	 * Construtor da classe
+	 * 
+	 * @param nome     representa o nome da filial
+	 * @param endereco representa o endereco de uma filial
+	 * @param cidade   que representa a cidade a qual na filial está localizada
+	 * @param cnpj     que representa o cnpj de uma filial, é uma string pois tem
+	 *                 seu formato XX. XXX. XXX/0001-XX.
+	 */
 	public Filial(String cidade, String nome, String endereco, String cnpj) {
+
 		super();
 		this.nome = nome;
 		this.endereco = endereco;
@@ -57,30 +74,6 @@ public class Filial {
 	public String toString() {
 		return "Cidade: " + cidade + "\nNome: " + nome + "\n Endereco: " + endereco + "\n CNPJ: " + cnpj;
 
-	}
-
-	public void adicionar(Produto produto) {
-		produtos.add(produto);
-	}
-
-	public void delete(Produto produto) {
-		produtos.remove(produto);
-	}
-
-	public void listarMedicamento() {
-		for (Produto p : produtos) {
-			if (p instanceof Medicamento) {
-				System.out.println(p.toString());
-			}
-		}
-	}
-
-	public void listarCosmetico() {
-		for (Produto p : produtos) {
-			if (p instanceof Cosmetico) {
-				System.out.println(p.toString());
-			}
-		}
 	}
 
 }

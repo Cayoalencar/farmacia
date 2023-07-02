@@ -4,7 +4,20 @@ import modelo.Cosmetico;
 import modelo.Farmacia;
 import modelo.Filial;
 import modelo.Medicamento;
+import view.TelaCadastro;
+import view.TelaList;
 
+/**
+ * 
+ * @author Cayo Felipe Alencar Camara
+ * @author Gabryel Nicolas Soares
+ * 
+ *         A classe Controle_farmacia e responsavel por fazer a ligacao entre as
+ *         telas e a modelo armazenando metodos e puxando metodos da classe do
+ *         modelo Farmacia
+ * 
+ * @see Farmacia
+ */
 public class ControleFarmacia {
 
 	Farmacia farma = new Farmacia();
@@ -13,14 +26,36 @@ public class ControleFarmacia {
 		return farma;
 	}
 
+	/**
+	 * Adiciona uma filial a farmacia farma instanciada no controlador
+	 * 
+	 * @param filial representa uma filial que tem seus atributos setados por
+	 *               textfields na view
+	 * @see TelaCadastro
+	 */
 	public void adicionar(Filial filial) {
 		farma.adicionar(filial);
 	}
 
+	/**
+	 * deleta uma filial a partir do nome da filial que recebe de um textfield na
+	 * tela de listagem
+	 * 
+	 * @param nome da filial que sera deletada
+	 * @see TelaList
+	 */
 	public void delete(String nome) {
 		farma.delete(nome);
 	}
 
+	/**
+	 * Realiza a filtragem das filiais pela cidade a que pertecem
+	 * 
+	 * @param cidadeList representa a cidade que tera suas filiais listadas
+	 * @return true sempre que existe uma filial na cidade, do contrario retorna
+	 *         falso
+	 * @see Filial
+	 */
 	public boolean listagemFilial(String cidadeList) {
 		for (Filial f : farma.getFiliais()) {
 			if (cidadeList.equalsIgnoreCase(f.getCidade())) {
@@ -29,6 +64,21 @@ public class ControleFarmacia {
 		}
 		return false;
 	}
+
+	/**
+	 * realiza o update dos atributos de um cosmetico
+	 * 
+	 * @param produto recebe o produto que é um cosmetico por meio de um click em
+	 *                uma lista e tera seus atributos atualizados
+	 * @param nome    recebe o nome por meio de um textfield para atualizacao
+	 * @param valor   recebe o valor por meio de um textfield para atualizacao
+	 * @param qtd     recebe a quantidade por meio de um textfield para atualizacao
+	 * @param marca   recebe a marca por meio de um textfield para atualizacao
+	 * @param tipo    recebe o valor por meio de um textfield para atualizacao
+	 * 
+	 *                verifica se os dados recebidos nos parametros e igual aos do
+	 *                modelo e se for diferente ele e alterado
+	 */
 
 	public void updateCosmetico(Cosmetico produto, String nome, Double valor, Integer qtd, String marca, String tipo) {
 		if (!nome.equals(produto.getNome())) {
@@ -51,6 +101,20 @@ public class ControleFarmacia {
 		}
 	}
 
+	/**
+	 * realiza o update dos atributos de uma filial
+	 * 
+	 * @param filial   recebe a filial por meio de um click em uma lista que tera
+	 *                 seus atributos atualizados
+	 * @param nome     recebe o nome por meio de um textfield para atualizacao
+	 * @param cidade   recebe a cidade por meio de um textfield para atualizacao
+	 * @param endereco recebe o endereco por meio de um textfield para atualizacao
+	 * @param cnpj     recebe o cnpj por meio de um textfield para atualização
+	 * 
+	 *                 verifica se os dados recebidos nos parametros e igual aos do
+	 *                 modelo e se for diferente ele e alterado
+	 */
+
 	public void updateFilial(Filial filial, String nome, String cidade, String endereco, String cnpj) {
 		if (!nome.equals(filial.getNome())) {
 			filial.setNome(nome);
@@ -67,8 +131,29 @@ public class ControleFarmacia {
 			filial.setCnpj(cnpj);
 		}
 	}
-	
-	public void updateMedicamento(Medicamento produto, String nome, Double valor, Integer qtd, String classificacao, String finalidade, String lab) {
+
+	/**
+	 * realiza a atualização dos atributos de um medicamento
+	 * 
+	 * @param produto       recebe o medicamento por meio de um click em uma lista
+	 *                      para realizar a atualização
+	 * @param nome          recebe nome por meio de um textfield para atualizacao
+	 * @param valor         recebe valor por meio de um textfield para atualizacao
+	 * @param qtd           recebe quantidade por meio de um textfield para
+	 *                      atualizacao
+	 * @param classificacao recebe a classificacao de um medicamento por meio de um
+	 *                      textfield para atualizacao
+	 * @param finalidade    recebe a finalidade por meio de um textfield para
+	 *                      atualizacao
+	 * @param lab           recebe o laboratorio por meio de um textfield para
+	 *                      atualizacao
+	 * 
+	 *                      verifica se os dados recebidos nos parametros e igual
+	 *                      aos do modelo e se for diferente ele e alterado
+	 */
+
+	public void updateMedicamento(Medicamento produto, String nome, Double valor, Integer qtd, String classificacao,
+			String finalidade, String lab) {
 		if (!nome.equals(produto.getNome())) {
 			produto.setNome(nome);
 			if (!valor.equals(produto.getValor())) {

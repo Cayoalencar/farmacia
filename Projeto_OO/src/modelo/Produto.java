@@ -1,12 +1,31 @@
 package modelo;
 
+/**
+ * 
+ * @author Cayo Felipe Alencar Camara
+ * @author Gabryel Nicolas Soares
+ * 
+ *         A classe produto e uma classe abstrata que representa um produto de
+ *         uma filial que pode ser um cosmetico ou um medicamento
+ * @see Cosmetico
+ * @see Medicamento
+ */
 public abstract class Produto {
 	protected String nome;
 	protected double valor;
 	protected int quantidade;
 	protected double peso;
 	protected int codigo;
-	
+
+	/**
+	 * construtor da classe
+	 * 
+	 * @param nome       nome do produto
+	 * @param valor      valor do produto
+	 * @param quantidade quantidade de um produto
+	 * @param peso       peso de um produto
+	 * @param codigo     codigo de um produto
+	 */
 	public Produto(String nome, double valor, int quantidade, double peso, int codigo) {
 		super();
 		this.nome = nome;
@@ -55,6 +74,5 @@ public abstract class Produto {
 	public void setCodigo(int codigo) {
 		this.codigo = codigo;
 	}
-	
-	
+
 }
