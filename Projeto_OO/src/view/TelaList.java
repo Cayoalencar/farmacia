@@ -1,7 +1,6 @@
 package view;
 
 import java.awt.Color;
-
 import java.awt.Font;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
@@ -14,26 +13,34 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JList;
 import javax.swing.JOptionPane;
-import javax.swing.JPanel;
 import javax.swing.JTextField;
+import javax.swing.ListSelectionModel;
 
 import controller.ControleFarmacia;
+import modelo.Cosmetico;
 import modelo.Filial;
+import modelo.Medicamento;
 import modelo.Produto;
 
 public class TelaList {
 
-	private JList<String> list;
-	private DefaultListModel<String> listModel = new DefaultListModel<>();
-	private JList<String> products;
-	private DefaultListModel<String> productsModel = new DefaultListModel<>();
+	private JList<Filial> list;
+	private DefaultListModel<Filial> listModel = new DefaultListModel<>();
+	private JList<Produto> products;
+	private DefaultListModel<Produto> productsModel = new DefaultListModel<>();
 	private ControleFarmacia dados;
 	private JTextField cidadeList;
 	private JTextField pesquisaf;
+	private JList<Produto> cosmeticos;
+	private DefaultListModel<Produto> cosmeticoModel = new DefaultListModel<>();
+	private JList<Produto> medicamentos;
+	private DefaultListModel<Produto> medModel = new DefaultListModel<>();
 
 	public TelaList(ControleFarmacia dados) {
 		list = new JList<>(listModel);
 		products = new JList<>(productsModel);
+		cosmeticos = new JList<>(cosmeticoModel);
+		medicamentos = new JList<>(medModel);
 		this.dados = dados;
 
 		JFrame telafiliais = new JFrame("FILIAIS");
@@ -67,6 +74,16 @@ public class TelaList {
 		products.setBackground(null);
 		products.setBounds(400, 250, 900, 460);
 		products.setFont(new Font("Arial Black", Font.PLAIN, 18));
+
+		cosmeticos.setVisible(false);
+		cosmeticos.setBackground(null);
+		cosmeticos.setBounds(400, 250, 900, 460);
+		cosmeticos.setFont(new Font("Arial Black", Font.PLAIN, 18));
+
+		medicamentos.setVisible(false);
+		medicamentos.setBackground(null);
+		medicamentos.setBounds(400, 250, 900, 460);
+		medicamentos.setFont(new Font("Arial Black", Font.PLAIN, 18));
 
 		JLabel selecao = new JLabel("SELECIONE O QUE DESEJA EDITAR");
 
@@ -404,8 +421,8 @@ public class TelaList {
 
 				else if (products.isVisible()) {
 					nomeToDellPd.setVisible(true);
-					dell.setVisible(false);
 					nomeFDellPd.setVisible(true);
+					dell.setVisible(false);
 					nomeToDell.setVisible(false);
 					nomeFDell.setVisible(false);
 					dellPd.setVisible(true);
@@ -533,52 +550,6 @@ public class TelaList {
 
 		botaocorrect.setVisible(false);
 
-		botaocorrect.addActionListener(new ActionListener() {
-
-			public void actionPerformed(ActionEvent e) {
-
-				if (marca.isVisible() && tipo.isVisible()) {
-					if (nomep.getText().isBlank() || valor.getText().isEmpty() || qtd.getText().isBlank()
-							|| qtd.getText().isEmpty() || peso.getText().isBlank() || peso.getText().isEmpty()
-							|| codigo.getText().isBlank() || codigo.getText().isEmpty() || marca.getText().isBlank()
-							|| marca.getText().isEmpty() || tipo.getText().isBlank() || tipo.getText().isEmpty()) {
-						JOptionPane.showMessageDialog(null, "PREENCHA CORRETAMENTE!");
-					}
-
-					else {
-
-					}
-				}
-
-				else if (classificacao.isVisible() && finalidade.isVisible() && lab.isVisible()) {
-					if (nomep.getText().isBlank() || valor.getText().isEmpty() || qtd.getText().isBlank()
-							|| qtd.getText().isEmpty() || peso.getText().isBlank() || peso.getText().isEmpty()
-							|| codigo.getText().isBlank() || codigo.getText().isEmpty()
-							|| classificacao.getText().isBlank() || classificacao.getText().isEmpty()
-							|| finalidade.getText().isBlank() || finalidade.getText().isEmpty()
-							|| lab.getText().isBlank() || lab.getText().isEmpty()) {
-						JOptionPane.showMessageDialog(null, "PREENCHA CORRETAMENTE!");
-					}
-
-					else {
-
-					}
-				}
-
-				else if (cidade.getText().isBlank() || cidade.getText().isBlank() || cidade.getText().isEmpty()
-						|| nome.getText().isBlank() || nome.getText().isEmpty() || endereco.getText().isBlank()
-						|| endereco.getText().isEmpty() || cnpj.getText().isBlank() || cnpj.getText().isEmpty()) {
-					JOptionPane.showMessageDialog(null, "PREENCHA CORRETAMENTE!");
-				}
-
-				else {
-
-				}
-
-			}
-
-		});
-
 		botaoFiliais.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				cidadeList.setVisible(true);
@@ -611,13 +582,17 @@ public class TelaList {
 		botaop.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 
-				products.setVisible(true);
+				products.setVisible(false);
+
+				cosmeticos.setVisible(false);
 
 				list.setVisible(false);
 
-				products.setBounds(100, 400, 300, 250);
+				medicamentos.setVisible(true);
 
-				products.setBackground(Color.RED);
+				medicamentos.setBounds(100, 400, 300, 250);
+
+				medicamentos.setBackground(Color.RED);
 
 				classificacao.setVisible(true);
 
@@ -677,6 +652,7 @@ public class TelaList {
 
 				jlabCidade.setVisible(false);
 
+				updatedataMedicamento(dados);
 			}
 
 		});
@@ -693,13 +669,17 @@ public class TelaList {
 		botaoc.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 
-				products.setVisible(true);
+				products.setVisible(false);
+
+				cosmeticos.setVisible(true);
 
 				list.setVisible(false);
 
-				products.setBounds(100, 400, 300, 250);
+				cosmeticos.setBounds(100, 400, 300, 250);
 
-				products.setBackground(Color.GREEN);
+				cosmeticos.setFont(new Font("Arial Black", Font.PLAIN, 12));
+
+				cosmeticos.setBackground(Color.GREEN);
 
 				marca.setVisible(true);
 
@@ -759,6 +739,65 @@ public class TelaList {
 
 				codigo.setVisible(true);
 
+				updatedataCosmetico(dados);
+			}
+
+		});
+
+		products.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+		list.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+		cosmeticos.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+		medicamentos.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+
+		botaocorrect.addActionListener(new ActionListener() {
+
+			public void actionPerformed(ActionEvent e) {
+
+				if (marca.isVisible() && tipo.isVisible()) {
+					if (nomep.getText().isBlank() || valor.getText().isEmpty() || qtd.getText().isBlank()
+							|| qtd.getText().isEmpty() || peso.getText().isBlank() || peso.getText().isEmpty()
+							|| codigo.getText().isBlank() || codigo.getText().isEmpty() || marca.getText().isBlank()
+							|| marca.getText().isEmpty() || tipo.getText().isBlank() || tipo.getText().isEmpty()) {
+						JOptionPane.showMessageDialog(null, "PREENCHA CORRETAMENTE!");
+					}
+
+					else {
+						Cosmetico x = (Cosmetico) cosmeticos.getSelectedValue();
+						dados.updateCosmetico(x, nomep.getText(), Double.parseDouble(valor.getText()),
+								Integer.parseInt(qtd.getText()), marca.getText(), tipo.getText());
+
+					}
+				}
+
+				else if (classificacao.isVisible() && finalidade.isVisible() && lab.isVisible()) {
+					if (nomep.getText().isBlank() || valor.getText().isEmpty() || qtd.getText().isBlank()
+							|| qtd.getText().isEmpty() || peso.getText().isBlank() || peso.getText().isEmpty()
+							|| codigo.getText().isBlank() || codigo.getText().isEmpty()
+							|| classificacao.getText().isBlank() || classificacao.getText().isEmpty()
+							|| finalidade.getText().isBlank() || finalidade.getText().isEmpty()
+							|| lab.getText().isBlank() || lab.getText().isEmpty()) {
+						JOptionPane.showMessageDialog(null, "PREENCHA CORRETAMENTE!");
+					}
+
+					else {
+						Medicamento x = (Medicamento) medicamentos.getSelectedValue();
+						dados.updateMedicamento(x, nomep.getText(), Double.parseDouble(valor.getText()),
+								Integer.parseInt(qtd.getText()), classificacao.getText(), finalidade.getText(),
+								lab.getText());
+					}
+				}
+
+				else if (cidade.getText().isBlank() || cidade.getText().isBlank() || cidade.getText().isEmpty()
+						|| nome.getText().isBlank() || nome.getText().isEmpty() || endereco.getText().isBlank()
+						|| endereco.getText().isEmpty() || cnpj.getText().isBlank() || cnpj.getText().isEmpty()) {
+					JOptionPane.showMessageDialog(null, "PREENCHA CORRETAMENTE!");
+				}
+
+				else {
+					dados.updateFilial(list.getSelectedValue(), nome.getText(), cidade.getText(), endereco.getText(),
+							cnpj.getText());
+				}
+
 			}
 
 		});
@@ -771,6 +810,7 @@ public class TelaList {
 
 		botaof.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				updatedata(dados);
 
 				list.setVisible(true);
 
@@ -875,6 +915,9 @@ public class TelaList {
 				botaoc.setVisible(true);
 				botaof.setVisible(true);
 				selecao.setVisible(true);
+				dellPd.setVisible(false);
+				nomeToDellPd.setVisible(false);
+				nomeFDellPd.setVisible(false);
 
 			}
 		});
@@ -1000,14 +1043,16 @@ public class TelaList {
 		telafiliais.add(marca);
 
 		telafiliais.add(selecao);
+		telafiliais.add(cosmeticos);
 
+		telafiliais.add(medicamentos);
 	}
 
 	public void updatedata(ControleFarmacia atual, String filial) {
 		listModel.clear();
 		for (Filial f : atual.getFarmacia().getFiliais()) {
 			if (filial.equalsIgnoreCase(f.getCidade())) {
-				listModel.addElement(f.toString());
+				listModel.addElement(f);
 			}
 		}
 
@@ -1016,7 +1061,7 @@ public class TelaList {
 	public void updatedata(ControleFarmacia atual) {
 		listModel.clear();
 		for (Filial f : atual.getFarmacia().getFiliais()) {
-			listModel.addElement(f.toString());
+			listModel.addElement(f);
 
 		}
 
@@ -1026,7 +1071,7 @@ public class TelaList {
 		listModel.clear();
 		for (Filial f : atual.getFarmacia().getFiliais()) {
 			if (nome.equalsIgnoreCase(f.getNome())) {
-				listModel.addElement(f.toString());
+				listModel.addElement(f);
 			}
 		}
 
@@ -1037,7 +1082,7 @@ public class TelaList {
 		for (Filial f : atual.getFarmacia().getFiliais()) {
 			for (Produto p : f.getProdutos()) {
 				if (nome.equalsIgnoreCase(p.getNome())) {
-					productsModel.addElement(p.toString() + f.getNome());
+					productsModel.addElement(p);
 
 				}
 			}
@@ -1049,10 +1094,35 @@ public class TelaList {
 		productsModel.clear();
 		for (Filial f : atualPd.getFarmacia().getFiliais()) {
 			for (Produto p : f.getProdutos()) {
-				productsModel.addElement(p.toString() + f.getNome());
+				productsModel.addElement(p);
 
 			}
+		}
 
+	}
+
+	public void updatedataCosmetico(ControleFarmacia atualPd) {
+		cosmeticoModel.clear();
+		for (Filial f : atualPd.getFarmacia().getFiliais()) {
+			for (Produto p : f.getProdutos()) {
+				if (p instanceof Cosmetico) {
+					cosmeticoModel.addElement(p);
+				}
+
+			}
+		}
+
+	}
+
+	public void updatedataMedicamento(ControleFarmacia atualPd) {
+		cosmeticoModel.clear();
+		for (Filial f : atualPd.getFarmacia().getFiliais()) {
+			for (Produto p : f.getProdutos()) {
+				if (p instanceof Medicamento) {
+					medModel.addElement(p);
+				}
+
+			}
 		}
 
 	}

@@ -30,8 +30,8 @@ public class Cosmetico extends Produto {
 	}
 	
 	public String toString() {
-		return "Nome: " + nome  + "\n Valor: " + valor + "\n Quatidade: " + quantidade + "\n Peso: " + peso +
-				"\n Codigo: " + codigo  + "\n Marca: " + marca + "\n Tipo: " + tipo;
+		return "Nome: " + nome  + ",Valor: " + valor + ",Quatidade: " + quantidade + ",Peso: " + peso +
+				",Codigo: " + codigo  + ",Marca: " + marca + ",Tipo: " + tipo;
 
 	}
 	
