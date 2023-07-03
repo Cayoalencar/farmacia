@@ -27,12 +27,6 @@ public class ControleFarmacia {
 		return farma;
 	}
 
-	
-	Medicamento produtom = new Medicamento("Paracetamol ", 12.99, 10, 2.5, 15701, "Controlado", "Analgésico",
-			"União Química");
-	Cosmetico produtoc = new Cosmetico("Malbec ", 50.90, 10, 250, 19701, "Boticario", "Perfume");
-	Filial filial = new Filial("GAMA", "PHARMA FORTE GAMA", "SETOR SUL", "12412");
-
 	/**
 	 * Adiciona uma filial a farmacia farma instanciada no controlador
 	 * 
@@ -43,10 +37,6 @@ public class ControleFarmacia {
 	public void adicionar(Filial filial) {
 		farma.adicionar(filial);
 	}
-	
-	
-	
-	
 
 	/**
 	 * deleta uma filial a partir do nome da filial que recebe de um textfield na
@@ -181,6 +171,7 @@ public class ControleFarmacia {
 	 *                      verifica se os dados recebidos nos parametros e igual
 	 *                      aos do modelo e se for diferente ele e alterado
 	 */
+	
 	public void updateMedicamento(Medicamento produto, String nome, Double valor, Integer qtd, String classificacao,
 			String finalidade, String lab) {
 		if (!nome.equals(produto.getNome())) {

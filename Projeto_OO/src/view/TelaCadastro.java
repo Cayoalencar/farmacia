@@ -40,8 +40,13 @@ public class TelaCadastro {
 	private JFrame telaadd;
 	private ControleFarmacia dados;
 	private JButton cadastrar;
-	private JTextField nome,endereco,cnpj,cidade;
+	private JTextField nome, endereco, cnpj, cidade;
 
+	/**
+	 * Classe da tela responsavel por mostrar as acoes de cadastro
+	 * 
+	 * @param dados ControleFarmacia responsavel por fazer o controle das acoes
+	 */
 	public TelaCadastro(ControleFarmacia dados) {
 		this.dados = dados;
 		telaadd = new JFrame("CADASTRO");
@@ -294,7 +299,7 @@ public class TelaCadastro {
 		nome.setActionCommand("myTF");
 
 		endereco = new JTextField(10);
-		
+
 		endereco.setText("Cidade: ;Bairro: ;Logradouro:");
 
 		endereco.setBounds(1080, 370, 200, 30);
@@ -439,7 +444,10 @@ public class TelaCadastro {
 
 			public void actionPerformed(ActionEvent e) {
 				boolean butHasClik = false;
-
+				/**
+				 * verifica se os campos estao vazios, se sim retorna uma mensagem, do contrario
+				 * chama o metodo que adiciona um medicamento, ou o de cosmetico
+				 */
 				if (classificacao.isVisible() && finalidade.isVisible() && lab.isVisible()) {
 					butHasClik = true;
 					if (nomep.getText().isBlank() || valor.getText().isEmpty() || qtd.getText().isBlank()
@@ -459,6 +467,9 @@ public class TelaCadastro {
 										Integer.parseInt(codigo.getText()), classificacao.getText(),
 										finalidade.getText(), lab.getText()));
 						JOptionPane.showMessageDialog(null, "PRODUTO CADASTRADO");
+						
+						dados.getFarmacia().addProduto("farma1", new Medicamento("Paracetamol ", 12.99, 10, 2.5, 15701, "Controlado", "Analgésico",
+			"União Química"));
 
 					}
 				}
@@ -480,7 +491,7 @@ public class TelaCadastro {
 										Integer.parseInt(qtd.getText()), Double.parseDouble(peso.getText()),
 										Integer.parseInt(codigo.getText()), marca.getText(), tipo.getText()));
 						JOptionPane.showMessageDialog(null, "PRODUTO CADASTRADO!");
-
+						dados.getFarmacia().addProduto("farma1",  new Cosmetico("Malbec ", 50.90, 10, 250, 19701, "Boticario", "Perfume"));
 					}
 
 				}
@@ -492,7 +503,7 @@ public class TelaCadastro {
 			}
 
 		});
-		
+
 		cadastrar = new JButton("ADICIONA FILIAL");
 
 		cadastrar.setFont(new Font("Arial Black", Font.PLAIN, 22));
@@ -502,13 +513,18 @@ public class TelaCadastro {
 		cadastrar.setBounds(900, 720, 300, 50);
 
 		cadastrar.addActionListener(new ActionListener() {
-
+			
+			
+			/**
+			 * verifica se os campos estao vazios, se sim retorna uma mensagem, do contrario
+			 * chama o metodo que adiciona uma filial
+			 */
 			public void actionPerformed(ActionEvent e) {
 
-				if (cidade.getText().isBlank() || cidade.getText().isEmpty()
-						|| nome.getText().isBlank() || nome.getText().isEmpty() || endereco.getText().isBlank()
-						|| endereco.getText().isEmpty() || cnpj.getText().isBlank() || cnpj.getText().isEmpty() 
-						|| dados.checkCNPJ(cnpj.getText())==false ) {
+				if (cidade.getText().isBlank() || cidade.getText().isEmpty() || nome.getText().isBlank()
+						|| nome.getText().isEmpty() || endereco.getText().isBlank() || endereco.getText().isEmpty()
+						|| cnpj.getText().isBlank() || cnpj.getText().isEmpty()
+						|| dados.checkCNPJ(cnpj.getText()) == false) {
 					JOptionPane.showMessageDialog(null, "PREENCHA CORRETAMENTE!");
 				} else {
 
@@ -517,7 +533,7 @@ public class TelaCadastro {
 					if (dados.getFarmacia().getFiliais() != null) {
 						JOptionPane.showMessageDialog(null, "FILIAL CADASTRADA");
 					}
-					dados.getFarmacia().adicionar(new Filial ("gama", "farma1", "qd 10", "0970"));
+					dados.getFarmacia().adicionar(new Filial("gama", "farma1", "qd 10", "0970"));
 				}
 
 			}
@@ -639,59 +655,7 @@ public class TelaCadastro {
 		telaadd.add(u1);
 
 		telaadd.setVisible(true);
-		
-		
 
-	}
-
-	public JButton getCadastrar() {
-		return cadastrar;
-	}
-
-	public void setCadastrar(JButton cadastrar) {
-		this.cadastrar = cadastrar;
-	}
-
-	public JTextField getNome() {
-		return nome;
-	}
-
-	public void setNome(JTextField nome) {
-		this.nome = nome;
-	}
-
-	public JTextField getEndereco() {
-		return endereco;
-	}
-
-	public void setEndereco(JTextField endereco) {
-		this.endereco = endereco;
-	}
-
-	public JTextField getCnpj() {
-		return cnpj;
-	}
-
-	public void setCnpj(JTextField cnpj) {
-		this.cnpj = cnpj;
-	}
-
-	public JTextField getCidade() {
-		return cidade;
-	}
-
-	public void setCidade(JTextField cidade) {
-		this.cidade = cidade;
-	}
-
-	public ControleFarmacia getDados() {
-		return dados;
-	}
-
-	public void setDados(ControleFarmacia dados) {
-		this.dados = dados;
 	}
 
 }
-
-//|| dados.checkCNPJ(cnpj.getText())

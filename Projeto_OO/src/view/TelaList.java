@@ -1142,9 +1142,8 @@ public class TelaList {
 		listModel.clear();
 		for (Filial f : atual.getFarmacia().getFiliais()) {
 			listModel.addElement(f);
-
 		}
-
+		
 	}
 /**
  * popula a jlist com os resultados da pesquisa realizada pelo Controlador 
