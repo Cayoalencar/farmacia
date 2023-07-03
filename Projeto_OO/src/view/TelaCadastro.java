@@ -26,9 +26,21 @@ import controller.*;
 
 import modelo.*;
 
+/**
+ * 
+ * @author Cayo Felipe Alencar Camara
+ * @author Gabryel Nicolas Soares
+ * 
+ *         Classe responsavel por cadastrar novas filias e novos
+ *         produtos(medicamentos ou cosmeticos)
+ * 
+ * @see TelaCadastro
+ */
 public class TelaCadastro {
 	private JFrame telaadd;
 	private ControleFarmacia dados;
+	private JButton cadastrar;
+	private JTextField nome,endereco,cnpj,cidade;
 
 	public TelaCadastro(ControleFarmacia dados) {
 		this.dados = dados;
@@ -269,26 +281,27 @@ public class TelaCadastro {
 
 		// criando caixas de texto
 
-		JTextField cidade = new JTextField(10);
+		cidade = new JTextField(10);
 
 		cidade.setBounds(1080, 210, 200, 30);
 
 		cidade.setActionCommand("myTF");
 
-		JTextField nome = new JTextField(10);
+		nome = new JTextField(10);
 
 		nome.setBounds(1080, 290, 200, 30);
 
 		nome.setActionCommand("myTF");
 
-		JTextField endereco = new JTextField(10);
+		endereco = new JTextField(10);
+		
 		endereco.setText("Cidade: ;Bairro: ;Logradouro:");
 
 		endereco.setBounds(1080, 370, 200, 30);
 
 		endereco.setActionCommand("myTF");
 
-		JTextField cnpj = new JTextField(10);
+		cnpj = new JTextField(10);
 
 		cnpj.setBounds(1080, 450, 200, 30);
 
@@ -479,23 +492,23 @@ public class TelaCadastro {
 			}
 
 		});
-		// Controle_farmacia controleFarmacia = new Controle_farmacia();
+		
+		cadastrar = new JButton("ADICIONA FILIAL");
 
-		JButton botao2 = new JButton("ADICIONA FILIAL");
+		cadastrar.setFont(new Font("Arial Black", Font.PLAIN, 22));
 
-		botao2.setFont(new Font("Arial Black", Font.PLAIN, 22));
+		cadastrar.setForeground(Color.RED);
 
-		botao2.setForeground(Color.RED);
+		cadastrar.setBounds(900, 720, 300, 50);
 
-		botao2.setBounds(900, 720, 300, 50);
-
-		botao2.addActionListener(new ActionListener() {
+		cadastrar.addActionListener(new ActionListener() {
 
 			public void actionPerformed(ActionEvent e) {
 
-				if (cidade.getText().isBlank() || cidade.getText().isBlank() || cidade.getText().isEmpty()
+				if (cidade.getText().isBlank() || cidade.getText().isEmpty()
 						|| nome.getText().isBlank() || nome.getText().isEmpty() || endereco.getText().isBlank()
-						|| endereco.getText().isEmpty() || cnpj.getText().isBlank() || cnpj.getText().isEmpty()) {
+						|| endereco.getText().isEmpty() || cnpj.getText().isBlank() || cnpj.getText().isEmpty() 
+						|| dados.checkCNPJ(cnpj.getText())==false ) {
 					JOptionPane.showMessageDialog(null, "PREENCHA CORRETAMENTE!");
 				} else {
 
@@ -526,8 +539,6 @@ public class TelaCadastro {
 			}
 
 		});
-
-		// Adiciona os componentes ao painel de conteúdo.
 
 		telaadd.add(botao1);
 
@@ -571,7 +582,7 @@ public class TelaCadastro {
 
 		telaadd.add(botao);
 
-		telaadd.add(botao2);
+		telaadd.add(cadastrar);
 
 		telaadd.add(botaof);
 
@@ -627,10 +638,60 @@ public class TelaCadastro {
 
 		telaadd.add(u1);
 
-		// Mostra o frame construído.
-
 		telaadd.setVisible(true);
+		
+		
 
 	}
 
+	public JButton getCadastrar() {
+		return cadastrar;
+	}
+
+	public void setCadastrar(JButton cadastrar) {
+		this.cadastrar = cadastrar;
+	}
+
+	public JTextField getNome() {
+		return nome;
+	}
+
+	public void setNome(JTextField nome) {
+		this.nome = nome;
+	}
+
+	public JTextField getEndereco() {
+		return endereco;
+	}
+
+	public void setEndereco(JTextField endereco) {
+		this.endereco = endereco;
+	}
+
+	public JTextField getCnpj() {
+		return cnpj;
+	}
+
+	public void setCnpj(JTextField cnpj) {
+		this.cnpj = cnpj;
+	}
+
+	public JTextField getCidade() {
+		return cidade;
+	}
+
+	public void setCidade(JTextField cidade) {
+		this.cidade = cidade;
+	}
+
+	public ControleFarmacia getDados() {
+		return dados;
+	}
+
+	public void setDados(ControleFarmacia dados) {
+		this.dados = dados;
+	}
+
 }
+
+//|| dados.checkCNPJ(cnpj.getText())

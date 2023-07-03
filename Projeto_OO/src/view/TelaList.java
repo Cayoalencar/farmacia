@@ -22,6 +22,16 @@ import modelo.Filial;
 import modelo.Medicamento;
 import modelo.Produto;
 
+/**
+ * 
+ * @author Cayo Felipe Alencar Camara
+ * @author Gabryel Nicolas Soares
+ * 
+ *         Classe responsavel por criar uma nova tela a telalist, onde irao ser
+ *         listadas todas as filiais e produtas da farmacia
+ * 
+ * @see TelaList
+ */
 public class TelaList {
 
 	private JList<Filial> list;
@@ -31,11 +41,18 @@ public class TelaList {
 	private ControleFarmacia dados;
 	private JTextField cidadeList;
 	private JTextField pesquisaf;
+	JButton botaopesquisaFilial;
+
 	private JList<Produto> cosmeticos;
 	private DefaultListModel<Produto> cosmeticoModel = new DefaultListModel<>();
 	private JList<Produto> medicamentos;
 	private DefaultListModel<Produto> medModel = new DefaultListModel<>();
 
+	/**
+	 * Recebe um ControleFarmacia para a ligacao das acoes nas telas com a modelo
+	 * 
+	 * @param dados dados representa o controleFarmacia
+	 */
 	public TelaList(ControleFarmacia dados) {
 		list = new JList<>(listModel);
 		products = new JList<>(productsModel);
@@ -339,7 +356,7 @@ public class TelaList {
 		botaoList.setBounds(150, 360, 200, 30);
 		botaoList.setVisible(false);
 
-		JButton botaopesquisaFilial = new JButton("");
+		botaopesquisaFilial = new JButton("");
 		botaopesquisaFilial.setIcon(new ImageIcon(image2));
 		botaopesquisaFilial.setBounds(1320, 150, 50, 50);
 		botaopesquisaFilial.setLayout(null);
@@ -349,7 +366,11 @@ public class TelaList {
 		pesquisaf.setBounds(1020, 157, 270, 35);
 		pesquisaf.setLayout(null);
 		pesquisaf.setVisible(false);
-
+		/**
+		 * Realiza a listagem das filiais, populando a JList com os objetos a partir do
+		 * clique em um botao
+		 * 
+		 */
 		botaoList.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 
@@ -430,6 +451,12 @@ public class TelaList {
 
 		});
 
+		/**
+		 * A partir do clique em um botao o metodo percorre o array de filiais e por
+		 * meio de uma verificacao pelo nome da filial deleta ela do array
+		 * 
+		 */
+
 		dell.addActionListener(new ActionListener() {
 
 			public void actionPerformed(ActionEvent e) {
@@ -445,9 +472,19 @@ public class TelaList {
 
 		});
 
+		/**
+		 * Por meio do clique de um botao realiza a acao de deletar um produto do
+		 * ArrayList da classe Filial por meio de um metodo
+		 * 
+		 * @see Filial
+		 */
+
 		dellPd.addActionListener(new ActionListener() {
 
 			public void actionPerformed(ActionEvent e) {
+				/**
+				 * verifica se todos os campos estao preenchidos, se sim realiza a acao
+				 */
 				if (nomeToDellPd.getText().isBlank() || nomeToDellPd.getText().isEmpty()) {
 					JOptionPane.showMessageDialog(null, "PREENCHA CORRETAMENTE!");
 				}
@@ -507,7 +544,12 @@ public class TelaList {
 			}
 
 		});
-
+		/**
+		 * botao responsavel por chamar o metodo de pesquisa que retorna a filial
+		 * encontrada
+		 * 
+		 * @see ControleFarmacia
+		 */
 		botaopesquisaFilial.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if (pesquisaf.getText().isBlank() || pesquisaf.getText().isEmpty()) {
@@ -560,9 +602,6 @@ public class TelaList {
 				pesquisaProd.setVisible(false);
 				pesquisaf.setVisible(true);
 
-				// updatedatap(dados);
-				// dados.getFarmacia().listFilial(null);
-
 			}
 
 		});
@@ -590,7 +629,7 @@ public class TelaList {
 
 				medicamentos.setBounds(100, 400, 300, 250);
 
-				medicamentos.setBackground(Color.RED);
+				medicamentos.setFont(new Font("Arial Black", Font.PLAIN, 12));
 
 				classificacao.setVisible(true);
 
@@ -677,8 +716,6 @@ public class TelaList {
 
 				cosmeticos.setFont(new Font("Arial Black", Font.PLAIN, 12));
 
-				cosmeticos.setBackground(Color.GREEN);
-
 				marca.setVisible(true);
 
 				tipo.setVisible(true);
@@ -742,6 +779,10 @@ public class TelaList {
 
 		});
 
+		/**
+		 * determina a forma de selecao das listas para a atualizacao dos metodos
+		 */
+
 		products.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		list.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		cosmeticos.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
@@ -750,8 +791,17 @@ public class TelaList {
 		botaocorrect.addActionListener(new ActionListener() {
 
 			public void actionPerformed(ActionEvent e) {
-
+				/**
+				 * verifica se os campos estao preenchidos
+				 * 
+				 * @see TelaList
+				 */
 				if (marca.isVisible() && tipo.isVisible()) {
+					/**
+					 * verifica se os campos estao preenchidos
+					 * 
+					 * @see TelaList
+					 */
 					if (nomep.getText().isBlank() || valor.getText().isEmpty() || qtd.getText().isBlank()
 							|| qtd.getText().isEmpty() || peso.getText().isBlank() || peso.getText().isEmpty()
 							|| codigo.getText().isBlank() || codigo.getText().isEmpty() || marca.getText().isBlank()
@@ -760,6 +810,13 @@ public class TelaList {
 					}
 
 					else {
+						/**
+						 * realiza a passagem de dados de cosmetico recebendo o valor do objeto
+						 * selecionado na lista e depois chama o metodo de atualiacao de atributos no
+						 * controlador
+						 * 
+						 * @see ControleFarmacia
+						 */
 						Cosmetico x = (Cosmetico) cosmeticos.getSelectedValue();
 						dados.updateCosmetico(x, nomep.getText(), Double.parseDouble(valor.getText()),
 								Integer.parseInt(qtd.getText()), marca.getText(), tipo.getText());
@@ -778,6 +835,13 @@ public class TelaList {
 					}
 
 					else {
+						/**
+						 * realiza a passagem de dados de medicamento recebendo o valor do objeto
+						 * selecionado na lista e depois chama o metodo de atualiacao de atributos no
+						 * controlador
+						 * 
+						 * @see ControleFarmacia
+						 */
 						Medicamento x = (Medicamento) medicamentos.getSelectedValue();
 						dados.updateMedicamento(x, nomep.getText(), Double.parseDouble(valor.getText()),
 								Integer.parseInt(qtd.getText()), classificacao.getText(), finalidade.getText(),
@@ -792,6 +856,12 @@ public class TelaList {
 				}
 
 				else {
+					/**
+					 * realiza a passagem de dados de Filial recebendo o valor do objeto selecionado
+					 * na lista e depois chama o metodo de atualiacao de atributos no controlador
+					 * 
+					 * @see ControleFarmacia
+					 */
 					dados.updateFilial(list.getSelectedValue(), nome.getText(), cidade.getText(), endereco.getText(),
 							cnpj.getText());
 				}
@@ -815,8 +885,7 @@ public class TelaList {
 				products.setVisible(false);
 
 				list.setBounds(100, 400, 300, 250);
-
-				list.setBackground(Color.BLUE);
+				list.setFont((new Font("Arial Black", Font.PLAIN, 12)));
 
 				marca.setVisible(false);
 
@@ -1046,6 +1115,14 @@ public class TelaList {
 		telafiliais.add(medicamentos);
 	}
 
+	/**
+	 * realiza a passagem de dados para popular a Jlist de filiais na tela de
+	 * listagem realizando a verificacao da cidade na qual a filial reside
+	 * 
+	 * @param atual Controlador responsavel por ligar as telas e os dados da modelo
+	 * @param filial representa a cidade recebida por um textfield na tela de listagem
+	 * @see TelaList
+	 */
 	public void updatedata(ControleFarmacia atual, String filial) {
 		listModel.clear();
 		for (Filial f : atual.getFarmacia().getFiliais()) {
@@ -1055,6 +1132,11 @@ public class TelaList {
 		}
 
 	}
+	
+	/**
+	 * Popula a Jlist com objetos do tipo Filial 
+	 * @param atual Controlador do tipo Controle Farmacia
+	 */
 
 	public void updatedata(ControleFarmacia atual) {
 		listModel.clear();
@@ -1064,7 +1146,12 @@ public class TelaList {
 		}
 
 	}
-
+/**
+ * popula a jlist com os resultados da pesquisa realizada pelo Controlador 
+ * @param atual Controlador responsavel por realizar a pesquisa no array 
+ * da modelo
+ * @param nome nome recebido de um textField para verificacao na pesquisa por nome
+ */
 	public void updatedataPesquisaF(ControleFarmacia atual, String nome) {
 		listModel.clear();
 		for (Filial f : atual.getFarmacia().getFiliais()) {
@@ -1074,6 +1161,13 @@ public class TelaList {
 		}
 
 	}
+	
+	/**
+	 * popula a jlist com os resultados da pesquisa realizada pelo Controlador 
+	 * @param atual Controlador responsavel por realizar a pesquisa no array 
+	 * da modelo
+	 * @param nome nome recebido de um textField para verificacao na pesquisa por nome
+	 */
 
 	public void updatedataPesquisaP(ControleFarmacia atual, String nome) {
 		productsModel.clear();
@@ -1087,7 +1181,10 @@ public class TelaList {
 		}
 
 	}
-
+/**
+ * Popula a Jlist com os produtos da modelo atraves do Controlador
+ * @param atualPd Controlador responsavel por atualizar os dados da lista
+ */
 	public void updatedatap(ControleFarmacia atualPd) {
 		productsModel.clear();
 		for (Filial f : atualPd.getFarmacia().getFiliais()) {
@@ -1098,7 +1195,11 @@ public class TelaList {
 		}
 
 	}
-
+	
+	/**
+	 * Popula a Jlist com os cosmeticos da modelo atraves do Controlador
+	 * @param atualPd Controlador responsavel por atualizar os dados da lista
+	 */
 	public void updatedataCosmetico(ControleFarmacia atualPd) {
 		cosmeticoModel.clear();
 		for (Filial f : atualPd.getFarmacia().getFiliais()) {
@@ -1111,7 +1212,10 @@ public class TelaList {
 		}
 
 	}
-
+	/**
+	 * Popula a Jlist com os medicamentos da modelo atraves do Controlador
+	 * @param atualPd Controlador responsavel por atualizar os dados da lista
+	 */
 	public void updatedataMedicamento(ControleFarmacia atualPd) {
 		cosmeticoModel.clear();
 		for (Filial f : atualPd.getFarmacia().getFiliais()) {
@@ -1123,6 +1227,22 @@ public class TelaList {
 			}
 		}
 
+	}
+
+	public JTextField getPesquisaf() {
+		return pesquisaf;
+	}
+
+	public void setPesquisaf(JTextField pesquisaf) {
+		this.pesquisaf = pesquisaf;
+	}
+
+	public JButton getBotaopesquisaFilial() {
+		return botaopesquisaFilial;
+	}
+
+	public void setBotaopesquisaFilial(JButton botaopesquisaFilial) {
+		this.botaopesquisaFilial = botaopesquisaFilial;
 	}
 
 }

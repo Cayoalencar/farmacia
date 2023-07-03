@@ -10,7 +10,14 @@ import javax.swing.JLabel;
 import javax.swing.Timer;
 
 import controller.ControleFarmacia;
-
+/**
+ * 
+ * @author Cayo Felipe Alencar Camara
+ * @author Gabryel Nicolas Soares
+ * 
+ * Classe responsavel por rodar o layout inicial da farmacia como um Banner
+ *
+ */
 public class TelaInicial extends JFrame {
 	
 	private ControleFarmacia dados;
@@ -18,7 +25,9 @@ public class TelaInicial extends JFrame {
 	public TelaInicial(ControleFarmacia dados) {
 		this.dados=dados;
 
-		// Cria a tela inicial
+		/**
+		 *  Cria a tela inicial
+		 */
 
 		 JFrame telainicial = new JFrame("Tela Inicial");
 
@@ -26,21 +35,29 @@ public class TelaInicial extends JFrame {
 
 		telainicial.setSize(1440, 900);
 
-		// Carrega a imagem a partir de um arquivo
+		/*
+		 *  Carrega a imagem a partir de um arquivo
+		 */
 
 		ImageIcon imagem = new ImageIcon("imagens/pharmaforteinicial.png");
 
-		// Cria um nome e define a imagem nele
+		/*
+		 * Cria um nome e define a imagem nele
+		 */
 
 		JLabel logog = new JLabel(imagem);
 
 		telainicial.getContentPane().add(logog);
 
-		// Exibe a tella inicial
+		/*
+		 *  Exibe a tella inicial
+		 */
 
 		telainicial.setVisible(true);
 
-		// Aguarda 5 segundos e depois transita para a próxima tela
+		/*
+		 *  Aguarda 4 segundos e depois transita para a próxima tela
+		 */
 
 		Timer timer = new Timer(4000, new ActionListener() {
 
@@ -52,8 +69,10 @@ public class TelaInicial extends JFrame {
 			}
 
 		});
-
-		timer.setRepeats(false); // Executa apenas uma vez
+		/*
+		 *  Executa apenas uma vez
+		 */
+		timer.setRepeats(false); 
 
 		timer.start();
 

@@ -1,4 +1,3 @@
-
 package view;
 
 import java.awt.Color;
@@ -15,6 +14,17 @@ import javax.swing.JPanel;
 
 import controller.ControleFarmacia;
 
+/**
+ * 
+ * @author Cayo Felipe Alencar Camara
+ * @author Gabryel Nicolas Soares
+ * 
+ *         Classe responsavel por criar uma nova tela, a telamenu, tela onde irao
+ *         estar as opcoes de listagem de filiais ou produtos e a nova tela de cadastro
+ *         de filiais e produtos
+ *         
+ * @see TelaMenu
+ */
 public class TelaMenu {
 	private ControleFarmacia dados = new ControleFarmacia();
 	private TelaList tela;
@@ -22,15 +32,11 @@ public class TelaMenu {
 
 	public TelaMenu() {
 
-		// Cria a janela da próxima tela
-
 		JFrame telamenu = new JFrame("Tela Menu");
 
 		telamenu.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
 		telamenu.setSize(1440, 900);
-
-		// Cria o painel com a barra
 
 		JPanel barra = new JPanel() {
 
@@ -38,29 +44,19 @@ public class TelaMenu {
 
 				super.paintComponent(g);
 
-				g.fillRect(0, 0, getWidth(), 85); // Define a posição e o tamanho do painel
-
-				// Carregar a imagem
+				g.fillRect(0, 0, getWidth(), 85);
 
 				Image imagem = new ImageIcon("imagens/acess1.png").getImage();
 
-				// Desenhar a imagem
-
 				g.drawImage(imagem, 0, 0, null);
 
-				// Carregar a imagem
-
 				Image logo = new ImageIcon("imagens/logo2.png").getImage();
-
-				// Desenhar a imagem
 
 				g.drawImage(logo, 0, 0, null);
 
 			}
 
 		};
-
-		// Cria o primeiro botão
 
 		JButton botao1 = new JButton("LIST");
 
@@ -76,15 +72,11 @@ public class TelaMenu {
 
 			public void actionPerformed(ActionEvent e) {
 
-				//Telafiliais.updatedata(dados);
-
 				TelaList telaFilial = new TelaList(dados);
 
 			}
 
 		});
-
-// Cria o segundo botão 
 
 		JButton botao3 = new JButton("CADASTRO");
 
@@ -100,13 +92,11 @@ public class TelaMenu {
 
 			public void actionPerformed(ActionEvent e) {
 
-				telaadd= new TelaCadastro(dados);
+				telaadd = new TelaCadastro(dados);
 
 			}
 
 		});
-
-		// Adiciona os botões e barra a tela
 
 		telamenu.add(botao1);
 
@@ -114,12 +104,7 @@ public class TelaMenu {
 
 		telamenu.add(barra);
 
-		// Adiciona o painel as janelas
-
-		// Exibe a janela
-
 		telamenu.setVisible(true);
-		
 
 	}
 

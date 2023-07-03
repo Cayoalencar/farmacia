@@ -18,6 +18,7 @@ import view.TelaList;
  * 
  * @see Farmacia
  */
+
 public class ControleFarmacia {
 
 	Farmacia farma = new Farmacia();
@@ -36,7 +37,7 @@ public class ControleFarmacia {
 	public void adicionar(Filial filial) {
 		farma.adicionar(filial);
 	}
-
+	
 	/**
 	 * deleta uma filial a partir do nome da filial que recebe de um textfield na
 	 * tela de listagem
@@ -44,11 +45,11 @@ public class ControleFarmacia {
 	 * @param nome da filial que sera deletada
 	 * @see TelaList
 	 */
-	public void delete(String nome) {
+ 	public void delete(String nome) {
 		farma.delete(nome);
 	}
 
-	/**
+ 	/**
 	 * Realiza a filtragem das filiais pela cidade a que pertecem
 	 * 
 	 * @param cidadeList representa a cidade que tera suas filiais listadas
@@ -66,6 +67,26 @@ public class ControleFarmacia {
 	}
 
 	/**
+	 * realiza uma checagem do cnpj
+	 * 
+	 * @param valor   recebe o valor por meio de um textfield para checagem
+	 * 
+	 *                 verifica se o cnpj possui apenas numeros sem caracteres
+	 */
+	public boolean checkCNPJ(String valor) {
+		try {
+
+			Long.parseLong(valor);
+
+		} catch (NumberFormatException e) {
+
+			return false;
+
+		}
+		return true;
+	}
+	
+	/**
 	 * realiza o update dos atributos de um cosmetico
 	 * 
 	 * @param produto recebe o produto que é um cosmetico por meio de um click em
@@ -79,7 +100,6 @@ public class ControleFarmacia {
 	 *                verifica se os dados recebidos nos parametros e igual aos do
 	 *                modelo e se for diferente ele e alterado
 	 */
-
 	public void updateCosmetico(Cosmetico produto, String nome, Double valor, Integer qtd, String marca, String tipo) {
 		if (!nome.equals(produto.getNome())) {
 			produto.setNome(nome);
@@ -100,7 +120,7 @@ public class ControleFarmacia {
 			produto.setTipo(tipo);
 		}
 	}
-
+	
 	/**
 	 * realiza o update dos atributos de uma filial
 	 * 
@@ -131,7 +151,7 @@ public class ControleFarmacia {
 			filial.setCnpj(cnpj);
 		}
 	}
-
+	
 	/**
 	 * realiza a atualização dos atributos de um medicamento
 	 * 
@@ -151,7 +171,6 @@ public class ControleFarmacia {
 	 *                      verifica se os dados recebidos nos parametros e igual
 	 *                      aos do modelo e se for diferente ele e alterado
 	 */
-
 	public void updateMedicamento(Medicamento produto, String nome, Double valor, Integer qtd, String classificacao,
 			String finalidade, String lab) {
 		if (!nome.equals(produto.getNome())) {
