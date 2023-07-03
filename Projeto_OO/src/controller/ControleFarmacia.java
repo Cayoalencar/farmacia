@@ -27,6 +27,12 @@ public class ControleFarmacia {
 		return farma;
 	}
 
+	
+	Medicamento produtom = new Medicamento("Paracetamol ", 12.99, 10, 2.5, 15701, "Controlado", "Analgésico",
+			"União Química");
+	Cosmetico produtoc = new Cosmetico("Malbec ", 50.90, 10, 250, 19701, "Boticario", "Perfume");
+	Filial filial = new Filial("GAMA", "PHARMA FORTE GAMA", "SETOR SUL", "12412");
+
 	/**
 	 * Adiciona uma filial a farmacia farma instanciada no controlador
 	 * 
@@ -38,6 +44,10 @@ public class ControleFarmacia {
 		farma.adicionar(filial);
 	}
 	
+	
+	
+	
+
 	/**
 	 * deleta uma filial a partir do nome da filial que recebe de um textfield na
 	 * tela de listagem
@@ -45,11 +55,11 @@ public class ControleFarmacia {
 	 * @param nome da filial que sera deletada
 	 * @see TelaList
 	 */
- 	public void delete(String nome) {
+	public void delete(String nome) {
 		farma.delete(nome);
 	}
 
- 	/**
+	/**
 	 * Realiza a filtragem das filiais pela cidade a que pertecem
 	 * 
 	 * @param cidadeList representa a cidade que tera suas filiais listadas
@@ -69,9 +79,9 @@ public class ControleFarmacia {
 	/**
 	 * realiza uma checagem do cnpj
 	 * 
-	 * @param valor   recebe o valor por meio de um textfield para checagem
+	 * @param valor recebe o valor por meio de um textfield para checagem
 	 * 
-	 *                 verifica se o cnpj possui apenas numeros sem caracteres
+	 *              verifica se o cnpj possui apenas numeros sem caracteres
 	 */
 	public boolean checkCNPJ(String valor) {
 		try {
@@ -85,7 +95,7 @@ public class ControleFarmacia {
 		}
 		return true;
 	}
-	
+
 	/**
 	 * realiza o update dos atributos de um cosmetico
 	 * 
@@ -120,7 +130,7 @@ public class ControleFarmacia {
 			produto.setTipo(tipo);
 		}
 	}
-	
+
 	/**
 	 * realiza o update dos atributos de uma filial
 	 * 
@@ -151,7 +161,7 @@ public class ControleFarmacia {
 			filial.setCnpj(cnpj);
 		}
 	}
-	
+
 	/**
 	 * realiza a atualização dos atributos de um medicamento
 	 * 

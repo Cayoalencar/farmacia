@@ -517,7 +517,7 @@ public class TelaCadastro {
 					if (dados.getFarmacia().getFiliais() != null) {
 						JOptionPane.showMessageDialog(null, "FILIAL CADASTRADA");
 					}
-
+					dados.getFarmacia().adicionar(new Filial ("gama", "farma1", "qd 10", "0970"));
 				}
 
 			}
